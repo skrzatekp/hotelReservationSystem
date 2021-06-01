@@ -8,10 +8,10 @@ CREATE TABLE rooms (
 CREATE TABLE guests (
     guest_id INT PRIMARY KEY AUTO_INCREMENT,
     uuid VARCHAR(50) NOT NULL,
-    firstName VARCHAR(15) NOT NULL,
-    secondName VARCHAR(25) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    phone VARCHAR(15) NOT NULL
+    first_name VARCHAR(15) NOT NULL,
+    second_name VARCHAR(25) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    phone VARCHAR(15) UNIQUE NOT NULL
 );
 
 CREATE TABLE reservations (

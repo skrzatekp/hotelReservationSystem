@@ -6,14 +6,16 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 
 @Entity
 @Table(name = "guests")
 public class Guest {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "guest_id")
     private int id;
 
@@ -39,5 +41,64 @@ public class Guest {
     private Set<Reservation> reservations;
 
     public Guest() {
+        this.setUuid();
+        this.setReservations();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone.trim().replaceAll("-","").replaceAll(" ", "");
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUuid() {
+        if(this.uuid == null || this.uuid.isEmpty()){
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
+        }
+    }
+
+    public void setReservations() {
+        if(this.reservations == null){
+            this.reservations = new HashSet<>();
+        }
     }
 }
