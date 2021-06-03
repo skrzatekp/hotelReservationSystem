@@ -1,5 +1,7 @@
 package com.portfolioproject.demo.guest;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.portfolioproject.demo.reservation.Reservation;
 
 import javax.persistence.*;
@@ -7,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -38,6 +41,7 @@ public class Guest {
 
     @OneToMany
     @JoinColumn(name = "guest_id")
+    @JsonBackReference
     private Set<Reservation> reservations;
 
     public Guest() {
@@ -69,9 +73,9 @@ public class Guest {
         return phone;
     }
 
-    public Set<Reservation> getReservations() {
-        return reservations;
-    }
+//    public Set<Reservation> getReservations() {
+//        return reservations;
+//    }
 
     public void setPhone(String phone) {
         this.phone = phone.trim().replaceAll("-","").replaceAll(" ", "");
@@ -100,5 +104,18 @@ public class Guest {
         if(this.reservations == null){
             this.reservations = new HashSet<>();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Guest guest = (Guest) o;
+        return Objects.equals(uuid, guest.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
     }
 }

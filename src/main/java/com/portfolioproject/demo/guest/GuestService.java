@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-class GuestService {
+public class GuestService {
     private final GuestRepository guestRepository;
 
     @Autowired
@@ -17,11 +17,11 @@ class GuestService {
     }
 
 
-    Optional<List<Guest>> readAllGuests() {
+    public Optional<List<Guest>> readAllGuests() {
         return Optional.of(guestRepository.findAll());
     }
 
-    Optional<Guest> readByUuid(String uuid) {
+    public Optional<Guest> readByUuid(String uuid) {
         return guestRepository.findByUuid(uuid);
     }
 

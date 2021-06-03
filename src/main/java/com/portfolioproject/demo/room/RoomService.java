@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-class RoomService {
+public class RoomService {
     private final RoomRepository roomRepository;
 
     @Autowired
@@ -20,9 +20,17 @@ class RoomService {
         return Optional.of(roomRepository.findAll());
     }
 
-    Optional<Room> readByNumber(String number) {
+    public Optional<Room> readByNumber(String number) {
         return roomRepository.findByNumber(number);
     }
+
+//    public Optional<Room> readById(int id) {
+//        return roomRepository.findById(id);
+//    }
+
+
+
+
 
     // TODO add a feature of temporarily block room for reservations
 
@@ -31,6 +39,7 @@ class RoomService {
         //TODO add feature: you can't delete room when room has open reservations
         roomRepository.deleteByNumber(number);
     }
+
 
     @Transactional
     Room addRoom(Room room) {
