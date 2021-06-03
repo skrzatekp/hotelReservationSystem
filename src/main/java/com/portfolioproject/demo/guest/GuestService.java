@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class GuestService {
+class GuestService {
     private final GuestRepository guestRepository;
 
     @Autowired

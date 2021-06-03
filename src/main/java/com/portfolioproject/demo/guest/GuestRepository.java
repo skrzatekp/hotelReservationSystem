@@ -6,7 +6,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.Optional;
 
 @RepositoryRestResource
-public interface GuestRepository extends JpaRepository<Guest, Integer> {
+ interface GuestRepository extends JpaRepository<Guest, Integer> {
 
     Optional<Guest> findByUuid(String uuid);
 

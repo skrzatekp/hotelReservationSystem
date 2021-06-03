@@ -14,7 +14,7 @@ import java.util.Set;
 public class Room {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "room_id")
     private int id;
 
@@ -22,11 +22,9 @@ public class Room {
     private String number;
 
     @Min(value = 0)
-    @NotBlank
     private int floor;
 
     @Min(value = 1)
-    @NotBlank
     private int beds;
 
     @OneToMany
@@ -36,4 +34,36 @@ public class Room {
     Room() {
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public int getBeds() {
+        return beds;
+    }
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+    public void setBeds(int beds) {
+        this.beds = beds;
+    }
 }
