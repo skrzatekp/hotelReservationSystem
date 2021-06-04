@@ -29,10 +29,10 @@ public class GuestViewController {
         return "addGuest.html";
     }
 
-    @GetMapping("newGuest")
+    @GetMapping("newGuestInfo")
     String addedNewGuest(Model model) {
 
-        return "success.html";
+        return "info.html";
     }
 
 

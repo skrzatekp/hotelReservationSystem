@@ -22,9 +22,9 @@
     <input id="phone" type="text" name="phone" th:text="${guest.phone}">
     <br>
     <br>
-    <button onclick=send()>Click me</button>
-</form>
 
+</form>
+<button onclick=send()>Click me</button>
     <script>
          function send() {
             let object = {
@@ -42,8 +42,8 @@
             xhr.send(json);
 
             if (xhr.status == 200) {
-            location.href = '/guests/register';
-            location.replace('/guests/newGuest');
+
+            location.replace('/guests/newGuestInfo');
             }
          }
     </script>
