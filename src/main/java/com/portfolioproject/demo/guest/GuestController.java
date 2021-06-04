@@ -79,6 +79,8 @@ public class GuestController {
             return ResponseEntity.ok(guestService.readByPhone(guest.getPhone()).get());
         }
     }
+
+
     
     @Transactional
     @PatchMapping( consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Create Account</title>
+
+</head>
+<body>
+<label>Create new Guest:</label>
+<form id="registerForm" method="post" th:action="@{/guests/register}" th:object="${guest}">
+    <p>First Name:</p>
+    <input id="firstName" type="text" name="firstName" th:text="${guest.firstName}">
+    <p>Last Name:</p>
+    <input id="secondName" type="text" name="secondName" th:text="${guest.secondName}">
+    <p>Email:</p>
+    <input id="email" type="text" name="email" th:text="${guest.email}">
+    <p>Phone:</p>
+    <input id="phone" type="text" name="phone" th:text="${guest.phone}">
+    <br>
+    <br>
+    <p><input onclick="send()" type="submit" value="Submit"/></p>
+</form>
+<button onclick=send()>Click me</button>
+    <script>
+         function send() {
+            let object = {
+                "firstName": document.getElementById("firstName").value,
+                "secondName": document.getElementById("secondName").value,
+                "email": document.getElementById("email").value,
+                 "phone": document.getElementById("phone").value
+            };
+
+            let json = JSON.stringify(object);
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", '/guests/add', false)
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.send(json);
+
+            if (xhr.status == 200) {
+                alert("Success!");
+            }
+         }
+
+    </script>
+
+</body>
+</html>

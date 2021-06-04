@@ -30,13 +30,13 @@ public class Reservation {
     @OneToOne
     @JoinColumn(name = "guest_id")
     @NotNull
-    @JsonManagedReference
+    //@JsonManagedReference
     private Guest guest;
 
     @OneToOne
     @JoinColumn(name = "room_id")
     @NotNull
-    @JsonManagedReference
+    //@JsonManagedReference
     private Room room;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, fallbackPatterns = {"dd.MM.yyyy"})
