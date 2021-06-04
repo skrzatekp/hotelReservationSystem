@@ -24,16 +24,17 @@ public class GuestViewController {
 
     @GetMapping("register")
     String readAllGuests(Model model) {
-        Guest guest = new Guest();
+        model.addAttribute("guest", new Guest());
+        return "addGuest";
+    }
+
+    @PostMapping("register")
+    String readAllGuests2(Guest guest, Model model) {
+        guestService.addGuest(guest);
         model.addAttribute("guest", guest);
-        return "addGuest.html";
+        return "info";
     }
 
-    @GetMapping("newGuestInfo")
-    String addedNewGuest(Model model) {
-
-        return "info.html";
-    }
 
 
 }

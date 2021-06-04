@@ -6,5 +6,13 @@
 </head>
 <body>
     <label>SUKCES!!!!!</label>
+
+    <form action="#" th:action="@{/guests/register}" th:object="${guest}" method="post">
+        <label th:text="${guest.getUuid()}"></label>
+        <label th:text="${guest.getFirstName()}"></label>
+        <label th:text="${guest.getSecondName()}"></label>
+        <label th:text="${guest.getPhone()}"></label>
+        <label th:text="${guest.getEmail()}"></label>
+    </form>
 </body>
 </html>
