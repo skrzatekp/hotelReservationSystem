@@ -11,7 +11,7 @@
 </head>
 <body>
 <label>Create new Guest:</label>
-<form id="registerForm" method="post" th:action="@{/guests/register}" th:object="${guest}">
+<form id="registerForm"  >
     <p>First Name:</p>
     <input id="firstName" type="text" name="firstName" th:text="${guest.firstName}">
     <p>Last Name:</p>
@@ -22,9 +22,9 @@
     <input id="phone" type="text" name="phone" th:text="${guest.phone}">
     <br>
     <br>
-    <p><input onclick="send()" type="submit" value="Submit"/></p>
+    <button onclick=send()>Click me</button>
 </form>
-<button onclick=send()>Click me</button>
+
     <script>
          function send() {
             let object = {
@@ -42,10 +42,10 @@
             xhr.send(json);
 
             if (xhr.status == 200) {
-                alert("Success!");
+            location.href = '/guests/register';
+            location.replace('/guests/newGuest');
             }
          }
-
     </script>
 
 </body>

@@ -29,12 +29,11 @@ public class GuestViewController {
         return "addGuest.html";
     }
 
-//    @PostMapping(
-//            path = "register",
-//            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
-//    )
-//    public String registerGuest(@RequestBody Guest guest) throws Exception {
-//
-//        return "/guests/add";
-//    }
+    @GetMapping("newGuest")
+    String addedNewGuest(Model model) {
+
+        return "success.html";
+    }
+
+
 }
