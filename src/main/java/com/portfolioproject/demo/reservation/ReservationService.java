@@ -49,7 +49,7 @@ public class ReservationService {
         }
 
         for (Reservation res : roomReservations) {
-            if (res.reservationsHaveConflict(start, end)) {
+            if (res.haveConflictWith(start, end)) {
                 throw new IllegalArgumentException("Reservation have conflict with another reservation");
             }
         }

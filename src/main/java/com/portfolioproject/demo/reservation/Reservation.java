@@ -61,7 +61,7 @@ public class Reservation {
         this.uuid = uuid.toString();
     }
 
-    public boolean reservationsHaveConflict(LocalDate newStart, LocalDate newEnd) {
+    public boolean haveConflictWith(LocalDate newStart, LocalDate newEnd) {
 
         LocalDate oldStart = this.start;
         LocalDate oldEnd = this.end;

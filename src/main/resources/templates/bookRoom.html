@@ -29,13 +29,16 @@
 <form action="#" th:action="@{/reservation/bookRoom}" th:object="${reservation}" method="post">
     <label>Reservation start: </label> <input type="date" th:field="*{start}"/> <br>
     <label>Reservation end: </label> <input type="date" th:field="*{end}"/> <br>
+    <br>
+    <input type="checkbox" id="freeRooms" name="freeRooms" value=true>
+    <label for="freeRooms"> Show only free rooms</label><br>
 
-    <button type="submit" name="showRooms">Show avaliable rooms</button>
+    <button type="submit" name="showRooms">Show rooms</button>
 </form>
 
 
 
-<!-- <form action="#" th:action="@{/reservation/summary}" th:object="${chosenRoom}" method="post"> -->
+<br>
     <span th:if="${showingRooms}"> Dostępne pokoje: <br>
         <table id="roomList"  >
             <thead>
@@ -53,14 +56,24 @@
                         <td th:text="${room.floor}"></td>
                         <td th:text="${room.beds}"></td>
 
-                        <td><button  th:value="${room.number}" th:action="${chosenRoom.setNumber(name)}" type="submit" name="number" >Choose Room</button></td>
+                        <td>
+                             <button  th:value="${room.number}" th:action="${chosenRoom.setNumber(name)}" type="submit" name="number" >Choose Room</button>
+                        </td>
+
+
+<!--                        <td>-->
+<!--                            <span th:if="${teacher.gender == 'F'}">Female</span>-->
+<!--                            <span th:unless="${teacher.gender == 'F'}">Male</span>-->
+<!--                        </td>-->
+
+
                     </form>
                 </tr>
             </tbody>
         </table>
 
     </span>
-<!-- </form> -->
+
 
 <style>
     table {

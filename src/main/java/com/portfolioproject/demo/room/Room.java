@@ -9,6 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -87,5 +88,15 @@ public class Room {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+
+    public boolean isRoomFree(LocalDate start, LocalDate end){
+        for (Reservation reservation : reservations ) {
+            if(reservation.haveConflictWith(start, end)){
+                return false;
+            }
+        }
+        return true;
     }
 }

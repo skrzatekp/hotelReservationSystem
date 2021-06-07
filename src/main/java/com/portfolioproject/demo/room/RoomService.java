@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class RoomService {
@@ -20,16 +23,24 @@ public class RoomService {
         return Optional.of(roomRepository.findAll());
     }
 
+    public List<Room> readFreeRooms(LocalDate start, LocalDate end) {
+        Optional<List<Room>> allRooms =  Optional.of(roomRepository.findAll());
+        List<Room> freeRooms = new ArrayList<>();
+
+        if(allRooms.isPresent()){
+            for (Room room: allRooms.get()) {
+                if(room.isRoomFree(start, end)){
+                    freeRooms.add(room);
+                }
+            }
+        }
+        return freeRooms;
+    }
+
+
     public Optional<Room> readByNumber(String number) {
         return roomRepository.findByNumber(number);
     }
-
-//    public Optional<Room> readById(int id) {
-//        return roomRepository.findById(id);
-//    }
-
-
-
 
 
     // TODO add a feature of temporarily block room for reservations
