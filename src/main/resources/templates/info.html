@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Succes</title>
 </head>
 <body>
-    <label>SUKCES!!!!!</label>
+    <label> Info: Your account was created!</label>
+    <br>
+    <br>
+<form action="#" th:action="@{/guests/account}"  th:object="${guest}" method="post">
+         <label th:text="*{firstName}"> your account was created!</label>
+        <button type="submit" name="accountView" >Go to your Account</button>
+</form>
 
-    <form action="#" th:action="@{/guests/register}" th:object="${guest}" method="post">
-        <label th:text="${guest.getUuid()}"></label>
-        <label th:text="${guest.getFirstName()}"></label>
-        <label th:text="${guest.getSecondName()}"></label>
-        <label th:text="${guest.getPhone()}"></label>
-        <label th:text="${guest.getEmail()}"></label>
+    <form action="#" th:action="@{/reservation/bookRoom}" th:object="${guest}" method="get">
+        <button type="submit" name="roomsView" >Book a room</button>
     </form>
+
+
+
+
+
 </body>
 </html>

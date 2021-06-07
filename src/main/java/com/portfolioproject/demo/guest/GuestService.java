@@ -21,6 +21,7 @@ public class GuestService {
         return Optional.of(guestRepository.findAll());
     }
 
+
     public Optional<Guest> readByUuid(String uuid) {
         return guestRepository.findByUuid(uuid);
     }
@@ -38,7 +39,7 @@ public class GuestService {
     }
 
     @Transactional
-    void deleteGuest(String uuid) {
+   public void deleteGuest(String uuid) {
         //TODO add feature: you can't delete guest when he has open reservations
         guestRepository.deleteByUuid(uuid);
     }

@@ -36,7 +36,8 @@ public class Room {
     @JsonBackReference
     private Set<Reservation> reservations;
 
-    Room() {
+    public Room() {
+
     }
 
 

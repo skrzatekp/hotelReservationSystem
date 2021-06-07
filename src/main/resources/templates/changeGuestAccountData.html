@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>Your Account</label>
+<br>
+<br>
+<br>
+
+<form action="#" th:action="@{/guests/account}" th:object="${guest}"  method="post">
+    <b><label>Your Data:</label></b><br>
+
+    <label>Identifier:
+        <label th:text="*{uuid}"></label>
+    </label><br>
+
+
+    <label>First name:
+    <span th:if="${actualizeData}"> <input type="text" th:field="*{firstName}"/></span>
+    </label>
+
+
+    <br>
+    <label>Last name:
+    <span th:if="${actualizeData}"> <input type="text" th:field="*{secondName}"/></span>
+    </label><br>
+
+    <label>Email:
+    <span th:if="${actualizeData}"> <input type="text" th:field="*{email}"/></span>
+    </label><br>
+
+    <label>Phone:
+    <span th:if="${actualizeData}"> <input type="text" th:field="*{phone}"/></span>
+    </label><br>
+    <span> <button type="submit" name="saveChanges" >SaveChanges</button></span>
+</form>
+
+
+
+
+
+<form action="#" th:action="@{/guests/account}" th:object="${guest}" method="get">
+    <button type="submit" name="deleteAccount" >Delete account</button>
+</form>
+
+
+</body>
+</html>

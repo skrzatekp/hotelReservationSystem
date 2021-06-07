@@ -16,7 +16,7 @@ public class RoomService {
         this.roomRepository = roomRepository;
     }
 
-    Optional<List<Room>> readAllRooms() {
+    public Optional<List<Room>> readAllRooms() {
         return Optional.of(roomRepository.findAll());
     }
 

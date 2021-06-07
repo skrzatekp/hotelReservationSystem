@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label> Reservation summary</label>
+
+<form action="#"  th:object="${currentGuest}" method="get">
+    <b><label>Guest DATA:</label></b><br>
+    <label>Identifier:
+        <label th:text="*{uuid}"></label>
+    </label><br>
+    <label>First name:
+        <label th:text="*{firstName}"></label>
+    </label><br>
+    <label>Last name:
+        <label th:text="*{secondName}"></label>
+    </label><br>
+    <label>Email:
+        <label th:text="*{email}"></label>
+    </label><br>
+    <label>Phone:
+        <label th:text="*{phone}"></label>
+    </label><br>
+</form>
+
+<form action="#"  th:object="${reservation}" method="get">
+    <b><label>Reservation DATA:</label></b><br>
+    <label>START:
+        <label th:text="*{start}"></label>
+    </label><br>
+    <label>END:
+        <label th:text="*{end}"></label>
+    </label><br>
+</form>
+
+<form action="#"  th:object="${chosenRoom}" method="get">
+    <b><label>Room DATA:</label></b><br>
+    <label>Number:
+        <label th:text="*{number}"></label>
+    </label><br>
+    <label>Floor:
+        <label th:text="*{floor}"></label>
+    </label><br>
+    <label>Beds:
+        <label th:text="*{beds}"></label>
+    </label><br>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book room</title>
+</head>
+<body>
+<label>Book ROOM</label>
+
+<form action="#" th:action="@{/guests/account}" th:object="${currentGuest}" method="get">
+    <b><label>Your Data:</label></b><br>
+    <label>Identifier:
+        <label th:text="*{uuid}"></label>
+    </label><br>
+    <label>First name:
+        <label th:text="*{firstName}"></label>
+    </label><br>
+    <label>Last name:
+        <label th:text="*{secondName}"></label>
+    </label><br>
+    <label>Email:
+        <label th:text="*{email}"></label>
+    </label><br>
+    <label>Phone:
+        <label th:text="*{phone}"></label>
+    </label><br>
+</form>
+
+<form action="#" th:action="@{/reservation/bookRoom}" th:object="${reservation}" method="post">
+    <label>Reservation start: </label> <input type="date" th:field="*{start}"/> <br>
+    <label>Reservation end: </label> <input type="date" th:field="*{end}"/> <br>
+
+    <button type="submit" name="showRooms">Show avaliable rooms</button>
+</form>
+
+
+
+<!-- <form action="#" th:action="@{/reservation/summary}" th:object="${chosenRoom}" method="post"> -->
+    <span th:if="${showingRooms}"> Dostępne pokoje: <br>
+        <table id="roomList"  >
+            <thead>
+            <tr>
+                <th> Room number </th>
+                <th > Floor </th>
+                <th > Beds </th>
+            </tr>
+            </thead>
+            <tbody>
+
+                <tr th:each="room : ${listOfRooms}">
+                    <form action="#" th:action="@{/reservation/summary}" th:object="${chosenRoom}" method="post">
+                        <td th:text="${room.number}" ></td>
+                        <td th:text="${room.floor}"></td>
+                        <td th:text="${room.beds}"></td>
+
+                        <td><button  th:value="${room.number}" th:action="${chosenRoom.setNumber(name)}" type="submit" name="number" >Choose Room</button></td>
+                    </form>
+                </tr>
+            </tbody>
+        </table>
+
+    </span>
+<!-- </form> -->
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+
+</body>
+</html>
