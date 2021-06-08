@@ -56,18 +56,18 @@
                         <td th:text="${room.floor}"></td>
                         <td th:text="${room.beds}"></td>
 
+
                         <td>
-                             <button  th:value="${room.number}" th:action="${chosenRoom.setNumber(name)}" type="submit" name="number" >Choose Room</button>
+                           <span th:if="${room.isRoomFree(reservation.getStart(), reservation.getEnd())}"> <button  th:value="${room.number}" th:action="${chosenRoom.setNumber(name)}" type="submit" name="number" >Choose Room</button> </span>
+                            <span th:unless="${room.isRoomFree(reservation.getStart(), reservation.getEnd())}"><label>Room not available for given reservation</label></span>
                         </td>
-
-
-<!--                        <td>-->
-<!--                            <span th:if="${teacher.gender == 'F'}">Female</span>-->
-<!--                            <span th:unless="${teacher.gender == 'F'}">Male</span>-->
-<!--                        </td>-->
-
-
                     </form>
+                         <td>
+                             <form action="#" th:action="@{/rooms/roomView}" th:object="${chosenRoom}" method="post">
+                                 <button  th:value="${room.number}" th:action="${chosenRoom.setNumber(name)}" type="submit" name="number" >Show Room</button>
+                             </form>
+                         </td>
+
                 </tr>
             </tbody>
         </table>

@@ -58,7 +58,7 @@ public class GuestViewController {
     }
 
 
-    @GetMapping(value = "account", params = "deleteAccount")
+   @GetMapping(value = "account", params = "deleteAccount")
     String deleteGuest(Model model) {
 
         String uuid = currentGuest.getUuid();

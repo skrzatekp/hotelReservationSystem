@@ -3,16 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <title>Starting page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
-<span th:if="${message != null}">Your account was deleted</span>
+<div class="navbar">
+    <a class="active" href="#">Home</a>
+    <a href="#">Rooms</a>
+    <a href="#">Your Account</a>
+    <a href="#">About</a>
+</div><br>
 
+<div class="deletionInformation" th:if="${message != null}">Your account was deleted.</div>
 
+<div class="center">
+<form action="#" th:action="@{/guests/register}"  method="get">
+    <button class="button">Register</button>
+</form>
+<button class="button">New user</button>
+</div>
 
-
-
- <label>Starting page</label>
+<div class="footer">
+    <p>This is a demo application.</p>
+</div>
 
 </body>
+
+
+
+<style th:inline="text" >
+
+    body{
+
+        background-image: url("/background.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+
+    }
+
+    .button {
+        background-color: dodgerblue;
+        border: none;
+        color: white;
+        padding: 8vh 15vw;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin:5px;
+        cursor: pointer;
+        border-radius: 5vh;
+        transition-duration: 0.4s;
+
+
+    }
+    .button:hover {
+        background-color: darkslateblue;
+        color: white;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: ghostwhite;
+        color: black;
+        text-align: center;
+        opacity: 0.5;
+        padding: 8px;
+    }
+
+
+
+      * {box-sizing: border-box}
+    body {font-family: Arial, Helvetica, sans-serif;}
+
+    .deletionInformation{
+        color: red;
+        font-size: 25px;
+        background: ghostwhite;
+        text-align: center;
+        border: 3px solid red;
+        margin: auto;
+        width: 60%;
+
+
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #555;
+        overflow: auto;
+
+    }
+
+    .navbar a {
+        float: left;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        width: 25%; /* Four links of equal widths */
+        text-align: center;
+    }
+
+    .navbar a:hover {
+        background-color: darkslateblue;
+        transition-duration: 0.4s;
+    }
+
+    .navbar a.active {
+        background-color: #0f4d94;
+    }
+
+    @media screen and (max-width: 500px) {
+        .navbar a {
+            float: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+    }
+
+
+
+
+</style>
 </html>
