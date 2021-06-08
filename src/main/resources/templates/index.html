@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Starting page</title>
+    <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
 
 <div class="navbar">
@@ -12,36 +13,41 @@
     <a href="#">Rooms</a>
     <a href="#">Your Account</a>
     <a href="#">About</a>
-</div><br>
+</div>
+<br>
 
 <div class="deletionInformation" th:if="${message != null}">Your account was deleted.</div>
 
 <div class="center">
-<form action="#" th:action="@{/guests/register}"  method="get">
-    <button class="button">Register</button>
-</form>
-<button class="button">New user</button>
+    <div>
+        <form action="#" th:action="@{/guests/register}" method="get">
+            <button class="button">Register</button>
+        </form>
+    </div>
+    <div>
+        <button class="button">New user</button>
+    </div>
 </div>
 
-<div class="footer">
-    <p>This is a demo application.</p>
-</div>
+<footer>This is a demo application.</footer>
 
 </body>
 
 
+<style th:inline="text">
 
-<style th:inline="text" >
-
-    body{
-
+    /*Body---------------------------------------------------*/
+    body {
         background-image: url("/background.jpg");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
-
+        font-family: Arial, Helvetica, sans-serif;
     }
 
+    /*Body---------------------------------------------------*/
+
+    /*Button---------------------------------------------------*/
     .button {
         background-color: dodgerblue;
         border: none;
@@ -50,14 +56,15 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
-        margin:5px;
+        font-size: 25px;
+        margin: 5px;
         cursor: pointer;
         border-radius: 5vh;
         transition-duration: 0.4s;
-
-
+        opacity: 0.85;
+        white-space: nowrap;
     }
+
     .button:hover {
         background-color: darkslateblue;
         color: white;
@@ -68,10 +75,12 @@
         justify-content: center;
         align-items: center;
         height: 50vh;
-
     }
 
-    .footer {
+    /*Button---------------------------------------------------*/
+
+    /*Footer---------------------------------------------------*/
+    footer {
         position: fixed;
         left: 0;
         bottom: 0;
@@ -83,12 +92,10 @@
         padding: 8px;
     }
 
+    /*Footer---------------------------------------------------*/
 
-
-      * {box-sizing: border-box}
-    body {font-family: Arial, Helvetica, sans-serif;}
-
-    .deletionInformation{
+    /*Info Box---------------------------------------------------*/
+    .deletionInformation {
         color: red;
         font-size: 25px;
         background: ghostwhite;
@@ -96,15 +103,19 @@
         border: 3px solid red;
         margin: auto;
         width: 60%;
+    }
 
+    /*Info Box---------------------------------------------------*/
 
+    /*Navigation bar---------------------------------------------------*/
+    * {
+        box-sizing: border-box
     }
 
     .navbar {
         width: 100%;
         background-color: #555;
         overflow: auto;
-
     }
 
     .navbar a {
@@ -133,10 +144,9 @@
             width: 100%;
             text-align: left;
         }
+
     }
 
-
-
-
+    /*Navigation bar---------------------------------------------------*/
 </style>
 </html>

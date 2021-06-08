@@ -2,35 +2,242 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account</title>
-
+    <title>Register Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-<label>Create new Guest:</label>
 
-<form action="#" th:action="@{/guests/register}" th:object="${guest}" method="post">
-    <label>First name:
-        <input type="text" th:field="*{firstName}"/>
-    </label><br>
-    <label>Second Name:
-        <input type="text" th:field="*{secondName}"/>
-    </label><br>
-    <label>Email:
-        <input type="text" th:field="*{email}"/>
-    </label><br>
-    <label>Phone:
-        <input type="text" th:field="*{phone}"/>
-    </label><br>
+<div id="page-container">
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Rooms</a>
+        <a class="active" href="#">Your Account</a>
+        <a href="#">About</a>
+    </div>
     <br>
+</div>
 
-    <button type="submit">Register!</button>
+<div class="container">
+    <form action="#" th:action="@{/guests/register}" th:object="${guest}" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="fname">First Name</label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{firstName}" placeholder="Your name.." id="fname">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="lname">Last Name</label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{secondName}" placeholder="Your last name.." id="lname">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="phone">Email</label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{email}" placeholder="Your email.." id="email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="email">Phone</label>
+            </div>
+            <div class="col-75">
+                <input type="text" th:field="*{phone}" placeholder="Your phone.." id="phone">
+            </div>
+        </div>
+        <br>
 
-</form>
+        <div class="row">
+            <button id="fakeDataButton" onclick="getData()" type="button">Get fake data</button>
+            <input type="submit" value="Register">
+        </div>
+    </form>
 
+</div>
 
-
-
+<footer>This is a demo application.</footer>
 </body>
+
+<script>
+    function getData() {
+        document.getElementById("fname").value = "Alex"
+        document.getElementById("lname").value = "Smith"
+        document.getElementById("phone").value = "123-321-123"
+        document.getElementById("email").value = "alex.smith@example.com"
+    }
+</script>
+
+<style th:inline="text">
+    /*Body---------------------------------------------------*/
+    body {
+        background-image: url("/background.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+        margin: 0;
+    }
+
+    /*Body---------------------------------------------------*/
+
+    /* Fake data Button---------------------------------------------------*/
+    #fakeDataButton {
+        background-color: darkorange;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+        margin: 5px;
+    }
+
+    #fakeDataButton:hover {
+        background-color: orangered;
+    }
+
+    /* Fake data Button---------------------------------------------------*/
+
+    /*Navigation bar---------------------------------------------------*/
+    .navbar {
+        width: 100%;
+        background-color: #555;
+        overflow: auto;
+    }
+
+    .navbar a {
+        float: left;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        width: 25%; /* Four links of equal widths */
+        text-align: center;
+    }
+
+    .navbar a:hover {
+        background-color: darkslateblue;
+        transition-duration: 0.4s;
+    }
+
+    .navbar a.active {
+        background-color: #0f4d94;
+    }
+
+    @media screen and (max-width: 500px) {
+        .navbar a {
+            float: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /*Navigation bar---------------------------------------------------*/
+
+    /*Input form---------------------------------------------------*/
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+    }
+
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+        margin: 5px;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+        .col-25, .col-75, input[type=submit], #fakeDataButton {
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+
+    /*Input form---------------------------------------------------*/
+
+    /*Container for input form---------------------------------------------------*/
+    .container {
+        border-radius: 5px;
+        padding: 20px;
+
+        border-style: solid;
+        display: inherit;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 60vw;
+        background-color: ghostwhite;
+        opacity: 0.85;
+        margin: auto;
+    }
+
+    .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+    }
+
+    .col-75 {
+        float: left;
+        width: 75%;
+        margin-top: 6px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /*Container for input form---------------------------------------------------*/
+
+    /*Footer---------------------------------------------------*/
+    footer {
+        margin-top: auto;
+        position: fixed;
+        left: 0;
+        bottom: 0vh;
+        width: 100%;
+        background-color: ghostwhite;
+        color: black;
+        text-align: center;
+        opacity: 0.5;
+        padding: 8px;
+        min-height: 50px;
+    }
+
+    /*Footer---------------------------------------------------*/
+</style>
 </html>
