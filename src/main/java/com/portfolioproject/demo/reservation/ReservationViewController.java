@@ -33,8 +33,8 @@ public class ReservationViewController {
 
     @GetMapping(value = "bookRoom")
     String bookRoom(Model model) {
-        //currentGuest = GuestViewController.getCurrentGuest();
-        currentGuest = guestService.readByUuid("df520b4c-c172-11eb-8529-0242ac130003").get();
+        currentGuest = GuestViewController.getCurrentGuest();
+//        currentGuest = guestService.readByUuid("df520b4c-c172-11eb-8529-0242ac130003").get();
         model.addAttribute("currentGuest", currentGuest);
         currentReservation = new Reservation();
         model.addAttribute("reservation", currentReservation);

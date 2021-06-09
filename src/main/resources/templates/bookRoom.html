@@ -2,69 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Book room</title>
+    <title>Book Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<label>Book ROOM</label>
+<div id="page-container">
+    <div class="navbar">
 
-<form action="#" th:action="@{/guests/account}" th:object="${currentGuest}" method="get">
-    <b><label>Your Data:</label></b><br>
-    <label>Identifier:
-        <label th:text="*{uuid}"></label>
-    </label><br>
-    <label>First name:
-        <label th:text="*{firstName}"></label>
-    </label><br>
-    <label>Last name:
-        <label th:text="*{secondName}"></label>
-    </label><br>
-    <label>Email:
-        <label th:text="*{email}"></label>
-    </label><br>
-    <label>Phone:
-        <label th:text="*{phone}"></label>
-    </label><br>
-</form>
-
-<form action="#" th:action="@{/reservation/bookRoom}" th:object="${reservation}" method="post">
-    <label>Reservation start: </label> <input type="date" th:field="*{start}"/> <br>
-    <label>Reservation end: </label> <input type="date" th:field="*{end}"/> <br>
+        <a th:href="@{/index}">Home</a>
+        <a href="#" class="active">Rooms</a>
+        <a href="#">Your Account</a>
+        <a href="#">About</a>
+    </div>
     <br>
-    <input type="checkbox" id="freeRooms" name="freeRooms" value=true>
-    <label for="freeRooms"> Show only free rooms</label><br>
+</div>
+<div class="container">
+    <form action="#" th:action="@{/reservation/bookRoom}" th:object="${reservation}" method="post">
+        <div class="row">
+            <div  style="width: 100%" class="col-25">
+                <label class="info">Check in:</label>
+            </div>
+            <div style="width: 100%" class="col-25">
+                <input style="width: 200px; text-align: center" type="date" th:field="*{start}"/>
+            </div>
 
-    <button type="submit" name="showRooms">Show rooms</button>
-</form>
+
+        </div>
+        <div class="row">
+            <div style="width: 100%" class="col-25">
+                <label class="info" >Check out:</label>
+            </div>
+            <div style="width: 100%" class="col-25">
+                <input style="width: 200px; text-align: center" type="date" th:field="*{end}"/>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div style=" width: 100%; text-align: center;" class="col-25">
+                <input style="alignment: center" type="checkbox" id="freeRooms" name="freeRooms" value=true>
+                <label style="color: #0f4d94" for="freeRooms">Only free rooms</label><br>
+                <br>
+                <button class="buttonShowRooms" type="submit" name="showRooms">Show rooms</button>
+            </div>
+        </div>
+    </form>
 
 
-
+</div>
 <br>
-    <span th:if="${showingRooms}"> Dostępne pokoje: <br>
-        <table id="roomList"  >
-            <thead>
+<div class="containerForTable">
+
+ <span class="info" th:if="${showingRooms}"> List of rooms: <br>
+        <table style="margin-left: auto; margin-right: auto;" id="roomList">
+            <thead style="background-color: grey">
             <tr>
                 <th> Room number </th>
-                <th > Floor </th>
-                <th > Beds </th>
+                <th> Floor </th>
+                <th> Beds </th>
+                 <th> Choose Room </th>
+                <th> See Room </th>
             </tr>
             </thead>
             <tbody>
 
                 <tr th:each="room : ${listOfRooms}">
                     <form action="#" th:action="@{/reservation/summary}" th:object="${chosenRoom}" method="post">
-                        <td th:text="${room.number}" ></td>
+                        <td th:text="${room.number}"></td>
                         <td th:text="${room.floor}"></td>
                         <td th:text="${room.beds}"></td>
 
 
                         <td>
-                           <span th:if="${room.isRoomFree(reservation.getStart(), reservation.getEnd())}"> <button  th:value="${room.number}" th:action="${chosenRoom.setNumber(name)}" type="submit" name="number" >Choose Room</button> </span>
-                            <span th:unless="${room.isRoomFree(reservation.getStart(), reservation.getEnd())}"><label>Room not available for given reservation</label></span>
+                           <span th:if="${room.isRoomFree(reservation.getStart(), reservation.getEnd())}"> <button
+                                   th:value="${room.number}" th:action="${chosenRoom.setNumber(name)}" type="submit"
+                                   name="number">Choose Room</button> </span>
+                            <span th:unless="${room.isRoomFree(reservation.getStart(), reservation.getEnd())}"><label>Not available</label></span>
                         </td>
                     </form>
                          <td>
                              <form action="#" th:action="@{/rooms/roomView}" th:object="${chosenRoom}" method="post">
-                                 <button  th:value="${room.number}" th:action="${chosenRoom.setNumber(name)}" type="submit" name="number" >Show Room</button>
+                                 <button class="buttonShow" th:value="${room.number}"
+                                         th:action="${chosenRoom.setNumber(name)}"
+                                         type="submit" name="number">Show Room</button>
                              </form>
                          </td>
 
@@ -75,22 +95,243 @@
     </span>
 
 
+</div>
+</div>
+
+
+<footer>This is a demo application.</footer>
+
+
+
 <style>
+    /*info labels--------------------------------------------------*/
+    .info {
+    color: #0f4d94;
+        display: block;
+        text-align: center
+    }
+
+    /*info labels--------------------------------------------------*/
+
+
+
+
+    /*buttons--------------------------------------------------*/
+    .buttonShow {
+        background-color: deepskyblue;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        /*float: right;*/
+        margin: auto;
+    }
+
+    .buttonShow:hover {
+        background-color: royalblue;
+    }
+
+    .buttonShowRooms {
+        background-color: deepskyblue;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    .buttonShowRooms:hover {
+        background-color: royalblue;
+    }
+
+    /*buttons--------------------------------------------------*/
+
+    /*<!--Input data------------------------------------->*/
+    input[type=data], select, textarea {
+
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+        font-size: large;
+        display: inline-block;
+        font-weight: bold;
+
+    }
+
+    /*<!--Input data------------------------------------->*/
+
+    /*Container for input form---------------------------------------------------*/
+    .container {
+        border-radius: 5px;
+        padding: 20px;
+
+        border-style: solid;
+        display: inherit;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 60vw;
+
+        background-color: ghostwhite;
+        opacity: 0.85;
+        margin: auto;
+        overflow-wrap: break-word;
+    }
+
+    .containerForTable {
+        border-radius: 5px;
+        padding: 20px;
+
+        border-style: solid;
+        display: inherit;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 60vw;
+
+        background-color: ghostwhite;
+        opacity: 0.85;
+        margin: auto;
+        overflow-wrap: break-word;
+    }
+
+    .col-25 {
+        float: left;
+        width: 100%;
+        /*margin-top: 6px;*/
+        text-align: center;
+        overflow-wrap: break-word;
+        margin: 5px;
+
+    }
+
+    .col-75 {
+        float: right;
+        width: 50%;
+        margin-top: 6px;
+        text-align: left;
+        overflow-wrap: break-word;
+
+        /*overflow: auto;*/
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /*Container for input form---------------------------------------------------*/
+    /*table---------------------------------------------------*/
     table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
-        width: 100%;
+        width: 80%;
     }
 
     td, th {
         border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
+        text-align: center;
+        padding: 3px;
+        margin: auto;
     }
 
     tr:nth-child(even) {
         background-color: #dddddd;
     }
+
+    /*table---------------------------------------------------*/
+
+    /*body---------------------------------------------------*/
+    body {
+        background-image: url("/background.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+        margin: 0;
+    }
+
+    /*body---------------------------------------------------*/
+
+    /*footer---------------------------------------------------*/
+    footer {
+        margin-top: auto;
+        position: fixed;
+        left: 0;
+        bottom: 0vh;
+        width: 100%;
+        background-color: ghostwhite;
+        color: black;
+        text-align: center;
+        opacity: 0.5;
+        padding: 8px;
+        min-height: 50px;
+    }
+
+    /*footer---------------------------------------------------*/
+
+    /*navigation bar---------------------------------------------------*/
+    * {
+        box-sizing: border-box
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #555;
+        overflow: auto;
+    }
+
+    .navbar a {
+        float: left;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        width: 25%; /* Four links of equal widths */
+        text-align: center;
+    }
+
+    .navbar a:hover {
+        background-color: darkslateblue;
+        transition-duration: 0.4s;
+    }
+
+    .navbar a.active {
+        background-color: #0f4d94;
+    }
+
+    @media screen and (max-width: 500px) {
+        .navbar a {
+            float: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead
+    of next to each other */
+    @media screen and (max-width: 600px) {
+        .col-25, .col-75, input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+
+        }
+    }
+
+    /*navigation bar---------------------------------------------------*/
+
 </style>
 
 
