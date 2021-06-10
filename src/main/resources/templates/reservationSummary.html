@@ -2,59 +2,638 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Reservation Summary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<label> Reservation summary</label>
+<div id="page-container">
+    <div class="navbar">
 
-<form action="#"  th:object="${currentGuest}" method="get">
-    <b><label>Guest DATA:</label></b><br>
-    <label>Identifier:
-        <label th:text="*{uuid}"></label>
-    </label><br>
-    <label>First name:
-        <label th:text="*{firstName}"></label>
-    </label><br>
-    <label>Last name:
-        <label th:text="*{secondName}"></label>
-    </label><br>
-    <label>Email:
-        <label th:text="*{email}"></label>
-    </label><br>
-    <label>Phone:
-        <label th:text="*{phone}"></label>
-    </label><br>
-</form>
+        <a th:href="@{/index}">Home</a>
+        <a href="#">Rooms</a>
+        <a href="#" >Your Account</a>
+        <a href="#">About</a>
+    </div>
+    <br>
+</div>
+<!--  Reservation summary------------------------------------------------------------------------------------------------------------->
+<div class="container">
+        <div style="text-align: center; font-weight: bold; font-size: larger" class="row">
+            <label>Reservation summary</label>
+        </div>
+</div>
+<br>
+<!--  User view------------------------------------------------------------------------------------------------------------->
+<div class="container">
+    <form action="#"  th:object="${currentGuest}" method="get">
+        <div style="text-align: center; font-weight: bold; font-size: larger" class="row">
+                <label>Your Data:</label>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>Unique identifier:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1" th:text="*{uuid}"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>First name:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1" th:text="*{firstName}"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>Last name:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1" th:text="*{secondName}"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>Email:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1" th:text="*{email}"></label>
+            </div>
+        </div>
+        <div class="row">
+            <span class="col-25">
+                <label>Phone:</label>
+            </span>
+            <span class="col-75">
+                <label class="label1" th:text="*{phone}"></label>
+            </span>
+        </div>
+    </form>
 
-<form action="#"  th:object="${reservation}" method="get">
-    <b><label>Reservation DATA:</label></b><br>
-    <label>START:
-        <label th:text="*{start}"></label>
-    </label><br>
-    <label>END:
-        <label th:text="*{end}"></label>
-    </label><br>
-</form>
-
-<form action="#"  th:object="${chosenRoom}" method="get">
-    <b><label>Room DATA:</label></b><br>
-    <label>Number:
-        <label th:text="*{number}"></label>
-    </label><br>
-    <label>Floor:
-        <label th:text="*{floor}"></label>
-    </label><br>
-    <label>Beds:
-        <label th:text="*{beds}"></label>
-    </label><br>
-</form>
+</div>
 
 
-<form action="#" th:action="@{/reservation/payment}"  method="get">
-    <button type="submit" name="confirm" >Confirm Reservation</button>
-</form>
+<br>
+<!--  Room view------------------------------------------------------------------------------------------------------------->
+<div class="container">
+    <form action="#"  th:object="${chosenRoom}" method="get">
+        <div style="text-align: center; font-weight: bold; font-size: larger" class="row">
+            <label>Chosen room:</label>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>Number:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1" th:text="*{number}"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>Floor:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1" th:text="*{floor}"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>Beds:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1" th:text="*{beds}"></label>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>
+<br>
+<!--  Reservation view------------------------------------------------------------------------------------------------------------->
+<div class="container">
+    <form action="#"  th:object="${reservation}" method="get">
+        <div style="text-align: center; font-weight: bold; font-size: larger" class="row">
+            <label >Reservation data:</label>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label >Start:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1"  th:text="*{start}"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>End:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1"  th:text="*{end}"></label>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>
+<br>
+<! Poniżej butony----------------------------------------------------------------------------->
+<div class="container">
+
+    <div style="text-align: center;"  class="row">
+
+        <form style="display:inline-block; text-align: center; alignment: center" action="#" th:action="@{/reservation/bookRoom}" th:object="${guest}" method="get">
+            <button style="display:inline-block;"  class="goBack" type="submit">Change</button>
+        </form>
+
+
+        <form style="display:inline-block; text-align: center; alignment: center" action="#" th:action="@{/reservation/payment}"  method="get">
+            <button  class="bookRoom" type="submit" name="confirm" >Confirm</button>
+        </form>
+
+
+    </div>
+
+</div>
+
 
 
 
 </body>
+
+<style th:inline="text">
+
+    /*<!--Room data------------------------------------->*/
+
+    label {
+        /*padding: 8px 8px 8px 0;*/
+        display: inline-block;
+        width: 100%;
+        color: #0f4d94;
+    }
+
+    .label1 {
+        font-size: large;
+        /*padding: 8px 8px 8px 0;*/
+        display: inline-block;
+        font-weight: bold;
+        width: 100%;
+        color: #0f4d94;
+    }
+
+    /*<!--Room data------------------------------------->*/
+
+
+    /*info labels--------------------------------------------------*/
+    .info {
+        color: #0f4d94;
+        display: block;
+        text-align: center
+    }
+
+    /*info labels--------------------------------------------------*/
+
+    /*buttons--------------------------------------------------*/
+    .goBack {
+        background-color: deepskyblue;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        /*float: right;*/
+        /*margin: auto;*/
+        margin: 5px;
+    }
+
+    .goBack:hover {
+        background-color: royalblue;
+    }
+
+    .bookRoom {
+        background-color: limegreen;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        /*float: right;*/
+        /*margin: auto;*/
+        margin: 5px;
+    }
+
+    .bookRoom:hover {
+        background-color: forestgreen;
+    }
+
+
+    /*buttons--------------------------------------------------*/
+
+    /*<!--Input data------------------------------------->*/
+    input[type=data], select, textarea {
+
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+        font-size: large;
+        display: inline-block;
+        font-weight: bold;
+
+    }
+
+    /*<!--Input data------------------------------------->*/
+
+    /*Container for input form---------------------------------------------------*/
+    .container {
+        border-radius: 5px;
+        padding: 20px;
+
+        border-style: solid;
+        display: inherit;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 60vw;
+
+        background-color: ghostwhite;
+        opacity: 0.85;
+        margin: auto;
+        overflow-wrap: break-word;
+    }
+
+
+
+    .col-25 {
+        float: left;
+        width: 48%;
+        margin-top: 6px;
+        text-align: right;
+        overflow-wrap: break-word;
+
+
+    }
+
+    .col-75 {
+        float: right;
+        width: 48%;
+        margin-top: 6px;
+        text-align: left;
+        overflow-wrap: break-word;
+
+        /*overflow: auto;*/
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /*Container for input form---------------------------------------------------*/
+
+    /*body---------------------------------------------------*/
+    body {
+        background-image: url("/background.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+        margin: 0;
+    }
+
+    /*body---------------------------------------------------*/
+
+
+
+    /*navigation bar---------------------------------------------------*/
+    * {
+        box-sizing: border-box
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #555;
+        overflow: auto;
+    }
+
+    .navbar a {
+        float: left;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        width: 25%; /* Four links of equal widths */
+        text-align: center;
+    }
+
+    .navbar a:hover {
+        background-color: darkslateblue;
+        transition-duration: 0.4s;
+    }
+
+    .navbar a.active {
+        background-color: #0f4d94;
+    }
+
+    @media screen and (max-width: 500px) {
+        .navbar a {
+            float: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead
+    of next to each other */
+    @media screen and (max-width: 600px) {
+        input[type=submit], .bookRoom, .goBack {
+            width: 100%;
+            margin-top: 0;
+
+
+        }
+
+
+    }
+    @media screen and (max-width: 600px) {
+        .col-25, .col-75 {
+            width: 48%;
+            margin-top: 0;
+
+
+        }
+
+
+    }
+
+
+
+    /*navigation bar---------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+    /*<!--Room data------------------------------------->*/
+    .label2{
+        padding: 8px 8px 8px 0;
+        display: inline-block;
+        width: 100%;
+        color: #0f4d94;
+    }
+    label {
+        /*padding: 8px 8px 8px 0;*/
+        display: inline-block;
+        width: 100%;
+        color: #0f4d94;
+    }
+
+    .label1 {
+        font-size: large;
+        /*padding: 8px 8px 8px 0;*/
+        display: inline-block;
+        font-weight: bold;
+        width: 100%;
+        color: #0f4d94;
+    }
+
+    /*<!--Room data------------------------------------->*/
+
+
+    /*info labels--------------------------------------------------*/
+    .info {
+        color: #0f4d94;
+        display: block;
+        text-align: center
+    }
+
+    /*info labels--------------------------------------------------*/
+
+    /*buttons--------------------------------------------------*/
+    .goBack {
+        background-color: deepskyblue;
+        color: white;
+        padding: 12px 40px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        /*float: right;*/
+        /*margin: auto;*/
+        margin: 5px;
+    }
+
+    .goBack:hover {
+        background-color: royalblue;
+    }
+
+    .bookRoom {
+        background-color: limegreen;
+        color: white;
+        padding: 12px 40px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        /*float: right;*/
+        /*margin: auto;*/
+        margin: 5px;
+    }
+
+    .bookRoom:hover {
+        background-color: forestgreen;
+    }
+
+
+    /*buttons--------------------------------------------------*/
+
+    /*<!--Input data------------------------------------->*/
+    input[type=data], select, textarea {
+
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+        font-size: large;
+        display: inline-block;
+        font-weight: bold;
+
+    }
+
+    /*<!--Input data------------------------------------->*/
+
+    /*Container for input form---------------------------------------------------*/
+    .container {
+        border-radius: 5px;
+        padding: 20px;
+
+        border-style: solid;
+        display: inherit;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 60vw;
+
+        background-color: ghostwhite;
+        opacity: 0.85;
+        margin: auto;
+        overflow-wrap: break-word;
+
+    }
+
+
+    .col-25 {
+        float: left;
+        width: 48%;
+        margin-top: 6px;
+        text-align: right;
+        overflow-wrap: break-word;
+
+
+    }
+
+    .col-75 {
+        float: right;
+        width: 48%;
+        margin-top: 6px;
+        text-align: left;
+        overflow-wrap: break-word;
+
+        /*overflow: auto;*/
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /*Container for input form---------------------------------------------------*/
+    /*table---------------------------------------------------*/
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 80%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 3px;
+        margin: auto;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    /*table---------------------------------------------------*/
+
+    /*body---------------------------------------------------*/
+    body {
+        background-image: url("/background.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+        margin: 0;
+
+    }
+
+    /*body---------------------------------------------------*/
+
+
+
+    /*navigation bar---------------------------------------------------*/
+    * {
+        box-sizing: border-box
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #555;
+        overflow: auto;
+    }
+
+    .navbar a {
+        float: left;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        width: 25%; /* Four links of equal widths */
+        text-align: center;
+    }
+
+    .navbar a:hover {
+        background-color: darkslateblue;
+        transition-duration: 0.4s;
+    }
+
+    .navbar a.active {
+        background-color: #0f4d94;
+    }
+
+    @media screen and (max-width: 500px) {
+        .navbar a {
+            float: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead
+    of next to each other */
+    @media screen and (max-width: 600px) {
+        input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+        }
+
+
+    }
+    @media screen and (max-width: 600px) {
+        .col-25, .col-75 {
+            width: 48%;
+            margin-top: 0;
+
+
+        }
+
+
+    }
+
+
+
+    /*navigation bar---------------------------------------------------*/
+
+
+
+
+
+
+
+
+</style>
 </html>
