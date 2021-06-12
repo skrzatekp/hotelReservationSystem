@@ -10,7 +10,7 @@ INSERT INTO reservations (uuid, guest_id, room_id, start, end) VALUES ('c11d0eaa
 INSERT INTO reservations (uuid, guest_id, room_id, start, end) VALUES ('c11d110c-c795-11eb-b8bc-0242ac130003', 2, 3, CURRENT_DATE() - 2, CURRENT_DATE());
 INSERT INTO reservations (uuid, guest_id, room_id, start, end) VALUES ('c11d11d4-c795-11eb-b8bc-0242ac130003', 3, 3, CURRENT_DATE() + 1, CURRENT_DATE() + 8);
 
-INSERT INTO reservations (uuid, guest_id, room_id, start, end) VALUES ('c11d1288-c795-11eb-b8bc-0242ac130003', 1, 4, CURRENT_DATE() - 5, CURRENT_DATE());
+INSERT INTO reservations (uuid, guest_id, room_id, start, end) VALUES ('c11d1288-c795-11eb-b8bc-0242ac130003', 1, 4, CURRENT_DATE() - 4, CURRENT_DATE());
 INSERT INTO reservations (uuid, guest_id, room_id, start, end) VALUES ('c11d13aa-c795-11eb-b8bc-0242ac130003', 2, 4, CURRENT_DATE(), CURRENT_DATE() + 5);
 INSERT INTO reservations (uuid, guest_id, room_id, start, end) VALUES ('c11d1472-c795-11eb-b8bc-0242ac130003', 3, 4, CURRENT_DATE() + 6, CURRENT_DATE() + 8);
 INSERT INTO reservations (uuid, guest_id, room_id, start, end) VALUES ('c11d1526-c795-11eb-b8bc-0242ac130003', 1, 4, CURRENT_DATE() + 15, CURRENT_DATE() + 20);

@@ -21,11 +21,13 @@
 <div class="center">
     <div>
         <form action="#" th:action="@{/guests/register}" method="get">
-            <button class="button">Register</button>
+            <button class="button">Register <br> new Account</button>
         </form>
     </div>
     <div>
-        <button class="button">New user</button>
+        <form action="#" th:action="@{/guests/account/existing}" method="get">
+        <button class="button">Use existing <br> account</button>
+        </form>
     </div>
 </div>
 

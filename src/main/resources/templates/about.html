@@ -3,8 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <title>About</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-<label > PAGE ABOUT</label>
+
+<div class="navbar">
+    <a  th:href="@{/index}">Home</a>
+    <a th:href="@{/reservation/rooms/nav}">Rooms</a>
+    <a th:href="@{guests/account/nav}">Your Account</a>
+    <a class="active" >About</a>
+</div>
+
+
+
+
+
 </body>
+
+
+<style th:inline="text">
+
+    /*Body---------------------------------------------------*/
+    body {
+        background-image: url("/background.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /*Body---------------------------------------------------*/
+
+    /*Button---------------------------------------------------*/
+    .button {
+        background-color: dodgerblue;
+        border: none;
+        color: white;
+        padding: 4vh 5vw;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 25px;
+        margin: 5px;
+        cursor: pointer;
+        border-radius: 5vh;
+        transition-duration: 0.4s;
+        opacity: 0.85;
+        white-space: nowrap;
+    }
+
+    .button:hover {
+        background-color: darkslateblue;
+        color: white;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+    }
+
+    /*Button---------------------------------------------------*/
+
+
+
+    /*Info Box---------------------------------------------------*/
+    .deletionInformation {
+        color: red;
+        font-size: 25px;
+        background: ghostwhite;
+        text-align: center;
+        border: 3px solid red;
+        margin: auto;
+        width: 60%;
+    }
+
+    /*Info Box---------------------------------------------------*/
+
+    /*Navigation bar---------------------------------------------------*/
+    * {
+        box-sizing: border-box
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #555;
+        overflow: auto;
+    }
+
+    .navbar a {
+        float: left;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+        width: 25%; /* Four links of equal widths */
+        text-align: center;
+    }
+
+    .navbar a:hover {
+        background-color: darkslateblue;
+        transition-duration: 0.4s;
+    }
+
+    .navbar a.active {
+        background-color: #0f4d94;
+    }
+
+    @media screen and (max-width: 500px) {
+        .navbar a {
+            float: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+    }
+
+    /*Navigation bar---------------------------------------------------*/
+
+
+</style>
 </html>

@@ -63,10 +63,16 @@ public class ReservationViewController {
 
     @PostMapping(value = "bookRoom", params = "showRooms")
     String bookRoom(@RequestParam(required = false) String freeRooms, @ModelAttribute Reservation reservation, @ModelAttribute Room room, Model model) {
+
+
         currentRoom = new Room();
         model.addAttribute("chosenRoom", currentRoom);
         model.addAttribute("currentGuest", currentGuest);
         currentReservation = reservation;
+        if(currentReservation.getStart().isAfter(currentReservation.getEnd()) || currentReservation.getStart().isEqual(currentReservation.getEnd())){
+            throw new IllegalArgumentException("End of reservation should be after start of reservation");
+        }
+
         model.addAttribute("reservation", currentReservation);
         model.addAttribute("showingRooms", true);
         if ("true".equals(freeRooms)) {
