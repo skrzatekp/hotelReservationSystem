@@ -63,7 +63,7 @@ public class ReservationService {
     }
 
 
-    List<Reservation> getAllGuestReservationsFor(String guestUuid) {
+   public List<Reservation> getAllGuestReservationsFor(String guestUuid) {
         List<Reservation> all = reservationRepository.findAll();
         List<Reservation> guestReservations = new ArrayList<>();
 
@@ -88,7 +88,7 @@ public class ReservationService {
     }
 
     @Transactional
-    void deleteReservation(String uuid) {
+    public void deleteReservation(String uuid) {
         //TODO add feature: you can't delete reservation when it is i dont know one day before
         reservationRepository.deleteByUuid(uuid);
     }

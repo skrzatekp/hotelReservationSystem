@@ -1,10 +1,15 @@
 package com.portfolioproject.demo.guest;
 
-import com.portfolioproject.demo.room.RoomService;
+import com.portfolioproject.demo.reservation.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Controller
@@ -13,12 +18,14 @@ public class GuestViewController {
 
     private static Guest currentGuest;
     private GuestService guestService;
+    private ReservationService reservationService;
 
 
     @Autowired
-    public GuestViewController(GuestService guestService) {
+    public GuestViewController(GuestService guestService, ReservationService reservationService) {
         this.guestService = guestService;
 
+        this.reservationService = reservationService;
     }
 
     public static Guest getCurrentGuest(){
@@ -33,6 +40,24 @@ public class GuestViewController {
         return "addGuest";
     }
 
+    @GetMapping("account/nav")
+    String goToAccountByNavigation(Model model) {
+       if(currentGuest == null || currentGuest.getPhone() == null){
+            Guest guest = new Guest();
+            model.addAttribute("guest", guest);
+            currentGuest = guest;
+            return "addGuest";
+        } else{
+           model.addAttribute("guest", currentGuest);
+           model.addAttribute("actualizeData", false);
+           model.addAttribute("reservations", reservationService.getAllGuestReservationsFor(currentGuest.getUuid()) );
+           model.addAttribute("todayDate", LocalDate.now());
+           return "guestAccount";
+       }
+
+    }
+
+
     @PostMapping("register")
     String saveNewGuest(@ModelAttribute(value = "guest") Guest guest, Model model) {
 
@@ -46,14 +71,31 @@ public class GuestViewController {
     String goToGuestAccount(Model model) {
         model.addAttribute("guest", currentGuest);
         model.addAttribute("actualizeData", false);
+        model.addAttribute("reservations", reservationService.getAllGuestReservationsFor(currentGuest.getUuid()) );
+        model.addAttribute("todayDate", LocalDate.now());
         return "guestAccount";
     }
+
+
+
+    @PostMapping(value = "account", params = "cancelReservation")
+    String cancelReservation(@RequestParam String cancelReservation, Model model) {
+        model.addAttribute("guest", currentGuest);
+//        model.addAttribute("actualizeData", false);
+        reservationService.deleteReservation(cancelReservation);
+        model.addAttribute("reservations", reservationService.getAllGuestReservationsFor(currentGuest.getUuid()) );
+        model.addAttribute("todayDate", LocalDate.now());
+//        currentGuest.setReservations2(new HashSet(reservationService.getAllGuestReservationsFor(currentGuest.getUuid())));
+        return "guestAccount";
+    }
+
 
 
 
     @GetMapping(value = "account")
     String guestAccount(Model model) {
         model.addAttribute("guest", currentGuest);
+        model.addAttribute("reservations", currentGuest.getReservations());
         return "guestAccount";
     }
 
@@ -79,13 +121,18 @@ public class GuestViewController {
     String saveActualizedGuestData(@ModelAttribute(value = "guest") Guest guest, Model model) {
 
         model.addAttribute("guest", currentGuest);
+
         currentGuest.setFirstName(guest.getFirstName());
         currentGuest.setSecondName(guest.getSecondName());
         currentGuest.setEmail(guest.getEmail());
         currentGuest.setPhone(guest.getPhone());
         guestService.actualizeGuestData(currentGuest);
 
+
         model.addAttribute("actualizeData", false);
+        model.addAttribute("todayDate", LocalDate.now());
+        currentGuest.setReservations2(new HashSet(reservationService.getAllGuestReservationsFor(currentGuest.getUuid())));
+        model.addAttribute("reservations", reservationService.getAllGuestReservationsFor(currentGuest.getUuid()));
         return "guestAccount";
     }
 

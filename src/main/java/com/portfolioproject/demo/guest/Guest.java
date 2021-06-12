@@ -73,9 +73,9 @@ public class Guest {
         return phone;
     }
 
-//    public Set<Reservation> getReservations() {
-//        return reservations;
-//    }
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
 
     public void setPhone(String phone) {
         this.phone = phone.trim().replaceAll("-","").replaceAll(" ", "");
@@ -105,6 +105,15 @@ public class Guest {
             this.reservations = new HashSet<>();
         }
     }
+
+    public void setReservations2(Set res) {
+        if(this.reservations == null){
+            this.reservations = new HashSet<>();
+        } else{
+            this.reservations = res;
+        }
+    }
+
 
     @Override
     public boolean equals(Object o) {

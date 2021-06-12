@@ -10,9 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "rooms")
@@ -97,6 +95,8 @@ public class Room {
                 return false;
             }
         }
+
+
         return true;
     }
 }

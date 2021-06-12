@@ -41,23 +41,42 @@ public class ReservationViewController {
         return "bookRoom";
     }
 
+    @GetMapping(value = "/rooms/nav")
+    String goToRoomsByNavigation(Model model) {
+        currentGuest = GuestViewController.getCurrentGuest();
+
+        if (currentGuest == null || currentGuest.getPhone() == null) {
+            Guest guest = new Guest();
+            model.addAttribute("guest", guest);
+            currentGuest = guest;
+            return "addGuest";
+        } else {
+            currentGuest = GuestViewController.getCurrentGuest();
+//        currentGuest = guestService.readByUuid("df520b4c-c172-11eb-8529-0242ac130003").get();
+            model.addAttribute("currentGuest", currentGuest);
+            currentReservation = new Reservation();
+            model.addAttribute("reservation", currentReservation);
+            return "bookRoom";
+        }
+    }
+
+
     @PostMapping(value = "bookRoom", params = "showRooms")
-    String bookRoom(@RequestParam(required = false) String freeRooms,  @ModelAttribute Reservation reservation,@ModelAttribute Room room, Model model) {
+    String bookRoom(@RequestParam(required = false) String freeRooms, @ModelAttribute Reservation reservation, @ModelAttribute Room room, Model model) {
         currentRoom = new Room();
         model.addAttribute("chosenRoom", currentRoom);
         model.addAttribute("currentGuest", currentGuest);
         currentReservation = reservation;
         model.addAttribute("reservation", currentReservation);
         model.addAttribute("showingRooms", true);
-        if("true".equals(freeRooms)){
+        if ("true".equals(freeRooms)) {
             model.addAttribute("listOfRooms", roomService.readFreeRooms(currentReservation.getStart(), currentReservation.getEnd()));
-        } else{
+        } else {
             model.addAttribute("listOfRooms", roomService.readAllRooms().get());
         }
         currentRoom.setNumber(room.getNumber());
         return "bookRoom";
     }
-
 
 
     @PostMapping(value = "summary")

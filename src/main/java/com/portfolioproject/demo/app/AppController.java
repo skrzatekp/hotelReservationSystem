@@ -15,5 +15,10 @@ public class AppController {
     }
 
 
+    @GetMapping(value = "about")
+    String aboutPage() {
+        return "about";
+    }
+
 
 }
