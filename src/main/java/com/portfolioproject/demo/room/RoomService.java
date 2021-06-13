@@ -85,4 +85,16 @@ public class RoomService {
         return roomRepository.findByNumber(room.getNumber()).isPresent();
     }
 
+//    double getCostPerNight(String roomNumber){
+//        if(roomRepository.existsByNumber(roomNumber)){
+//            return roomRepository.findByNumber(roomNumber).get().getCost();
+//        } else {
+//            throw new IllegalArgumentException("No room with given number");
+//        }
+//    }
+
+
+
+
+
 }

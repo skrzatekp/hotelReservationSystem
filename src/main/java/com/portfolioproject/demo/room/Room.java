@@ -30,15 +30,24 @@ public class Room {
     @Min(value = 1)
     private int beds;
 
+    @Min(value = 1)
+    private double cost;
+
     @OneToMany
     @JoinColumn(name = "room_id")
     @JsonBackReference
     private Set<Reservation> reservations;
 
     public Room() {
-
     }
 
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
 
     public int getId() {
         return id;

@@ -8,7 +8,11 @@ import com.portfolioproject.demo.room.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping(path = "/reservation")
@@ -19,7 +23,7 @@ public class ReservationViewController {
     private GuestService guestService;
     private Guest currentGuest;
     private RoomService roomService;
-    private Reservation currentReservation;
+    private static Reservation currentReservation;
     private Room currentRoom;
     private ReservationService reservationService;
 
@@ -28,6 +32,10 @@ public class ReservationViewController {
         this.guestService = guestService;
         this.roomService = roomService;
         this.reservationService = reservationService;
+    }
+
+    public static Reservation getCurrentReservation() {
+        return currentReservation;
     }
 
 
@@ -60,18 +68,53 @@ public class ReservationViewController {
         }
     }
 
-
+//TUUUUU
     @PostMapping(value = "bookRoom", params = "showRooms")
-    String bookRoom(@RequestParam(required = false) String freeRooms, @ModelAttribute Reservation reservation, @ModelAttribute Room room, Model model) {
-
+    String bookRoom(@RequestParam(required = false) String freeRooms, @ModelAttribute Reservation reservation, BindingResult bindingResult, @ModelAttribute Room room, Model model) {
 
         currentRoom = new Room();
         model.addAttribute("chosenRoom", currentRoom);
         model.addAttribute("currentGuest", currentGuest);
-        currentReservation = reservation;
-        if(currentReservation.getStart().isAfter(currentReservation.getEnd()) || currentReservation.getStart().isEqual(currentReservation.getEnd())){
-            throw new IllegalArgumentException("End of reservation should be after start of reservation");
+
+
+        if(reservation.getStart() == null || reservation.getEnd() == null){
+            bindingResult.addError(new ObjectError("wrongDate", null, null,"Start and equal can't be null"));
+            model.addAttribute("startOrEndNull", true);
+            return "bookRoom";
         }
+
+
+
+       if(!reservation.getStart().isBefore(reservation.getEnd())){
+           bindingResult.addError(new ObjectError("wrongDate", null, null,"Start cant be after end"));
+           model.addAttribute("wrongDate", true);
+       }
+
+        if(reservation.getStart().isEqual(reservation.getEnd())){
+            bindingResult.addError(new ObjectError("wrongDate", null, null,"Start and end can't be equal"));
+            model.addAttribute("theSameDate", true);
+        }
+
+        if(reservation.getStart().isBefore(LocalDate.now())){
+            bindingResult.addError(new ObjectError("wrongDate", null, null,"Start and equal can't be in the past"));
+            model.addAttribute("inThePast", true);
+        }
+
+
+
+
+
+
+       if(bindingResult.hasErrors()){
+           return "bookRoom";
+       }
+
+
+        currentReservation = reservation;
+
+//        if(currentReservation.getStart().isAfter(currentReservation.getEnd()) || currentReservation.getStart().isEqual(currentReservation.getEnd())){
+//            throw new IllegalArgumentException("End of reservation should be after start of reservation");
+//        }
 
         model.addAttribute("reservation", currentReservation);
         model.addAttribute("showingRooms", true);
@@ -93,12 +136,19 @@ public class ReservationViewController {
         model.addAttribute("listOfRooms", roomService.readAllRooms().get());
         model.addAttribute("reservation", currentReservation);
         model.addAttribute("chosenRoom", currentRoom);
+        model.addAttribute("totalCost", reservationService.calculateTotalCost(currentReservation, currentRoom));
 
         return "reservationSummary";
     }
 
     @GetMapping(value = "payment")
     String payment(Model model) {
+        if(guestService.readByUuid(currentGuest.getUuid()).isEmpty()){
+            model.addAttribute("guestNotExist", true);
+            model.addAttribute("guest", new Guest());
+            return "addGuest";
+        }
+
         reservationService.addReservation(currentGuest.getUuid(), currentRoom.getNumber(), currentReservation.getStart(), currentReservation.getEnd());
 
         return "payment";

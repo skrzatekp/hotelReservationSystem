@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
@@ -7,11 +7,10 @@
 </head>
 
 <body>
-
 <div class="navbar">
     <a class="active">Home</a>
     <a th:href="@{/reservation/rooms/nav}">Rooms</a>
-    <a th:href="@{guests/account/nav}">Your Account</a>
+    <a th:href="@{/guests/account/nav}">Your Account</a>
     <a th:href="@{/about}">About</a>
 </div>
 <br>
@@ -45,6 +44,8 @@
         background-attachment: fixed;
         background-size: cover;
         font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+        margin: 0;
     }
 
     /*Body---------------------------------------------------*/

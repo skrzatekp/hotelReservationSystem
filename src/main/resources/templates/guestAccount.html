@@ -18,6 +18,7 @@
 </div>
 <div class="container">
     <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="get">
+
         <div class="row">
             <div class="col-25">
                 <label>Unique identifier:</label>
@@ -67,7 +68,9 @@
         </form>
 
         <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="get">
+
             <button class="buttonDelete" type="submit" name="deleteAccount">Delete account</button>
+            <p class="validationError" th:if="${existingAccount == true}">You cannot delete this user.  User exists for you to test the application. Register your own account.</p>
         </form>
     </div>
 
@@ -88,11 +91,11 @@
         </tr>
           <span th:if="${reservations.size() != 0}" >
         <tr th:each="res : ${reservations}">
-            <td th:text="${reservations.indexOf(res) + 1}" /></td>
-            <td th:text="${res.start}" /></td>
-            <td th:text="${res.end}" /></td>
-            <td th:text="${res.room.number}" /></td>
-            <td>CENA</td>
+            <td th:text="${reservations.indexOf(res) + 1}" ></td>
+            <td th:text="${res.start}" ></td>
+            <td th:text="${res.end}" ></td>
+            <td th:text="${res.room.number}" ></td>
+            <td th:text="'$' + ${res.getTotalCost}"></td>
 
 
             </td>
@@ -121,6 +124,11 @@
 </body>
 
 <style>
+    .validationError{
+        color: red;
+        font-weight: bold;
+        text-align: right;
+    }
     .containerForTable {
         border-radius: 5px;
         padding: 20px;

@@ -5,8 +5,11 @@ import com.portfolioproject.demo.reservation.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -61,7 +64,13 @@ public class GuestViewController {
 
 
     @PostMapping("register")
-    String saveNewGuest(@ModelAttribute(value = "guest") Guest guest, Model model) {
+    String saveNewGuest(@ModelAttribute(value = "guest") @Valid Guest guest,
+                        BindingResult bindingResult,
+            Model model) {
+
+        if(bindingResult.hasErrors()){
+            return "addGuest";
+        }
 
         model.addAttribute("guest", guest);
         currentGuest = guest;
@@ -120,7 +129,28 @@ public class GuestViewController {
     @GetMapping(value = "account", params = "deleteAccount")
     String deleteGuest(Model model) {
 
+        if(currentGuest == null){
+            model.addAttribute("alreadyDeleted", true);
+            model.addAttribute("guest", new Guest());
+
+            return "addGuest";
+        }
+
         String uuid = currentGuest.getUuid();
+       if(uuid.equals("df520b4c-c172-11eb-8529-0242ac130003")){
+           model.addAttribute("existingAccount", true);
+           model.addAttribute("guest", currentGuest);
+           model.addAttribute("reservations", reservationService.getAllGuestReservationsFor(currentGuest.getUuid()));
+           model.addAttribute("todayDate", LocalDate.now());
+           return "guestAccount";
+       }
+
+
+//       if(guestService.readByUuid(uuid).isEmpty()){
+//           model.addAttribute("alreadyDeleted", true);
+//           return "addGuest";
+//       }
+
         guestService.deleteGuest(uuid);
         currentGuest = null; //
         model.addAttribute("message", "Your account was deleted");
@@ -134,15 +164,54 @@ public class GuestViewController {
         return "changeGuestAccountData";
     }
 
+
+    //TUUU
     @PostMapping(value = "account", params = "saveChanges")
-    String saveActualizedGuestData(@ModelAttribute(value = "guest") Guest guest, Model model) {
+    String saveActualizedGuestData(@ModelAttribute(value = "guest") @Valid Guest guest, BindingResult bindingResult, Model model) {
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("actualizeData", true);
+            return "changeGuestAccountData";
+
+        }
 
         model.addAttribute("guest", currentGuest);
 
         currentGuest.setFirstName(guest.getFirstName());
         currentGuest.setSecondName(guest.getSecondName());
-        currentGuest.setEmail(guest.getEmail());
-        currentGuest.setPhone(guest.getPhone());
+        if(!currentGuest.getPhone().equals(guest.getPhone())){
+            if(guestService.phoneExists(guest.getPhone())){
+                model.addAttribute("phoneExists", true);
+                bindingResult.addError(new ObjectError("phoneExists", null, null,"Phone already exists"));
+
+            } else{
+                currentGuest.setPhone(guest.getPhone());
+            }
+        }
+
+        if(!currentGuest.getEmail().equals(guest.getEmail())){
+            if(guestService.emailExists(guest.getEmail())){
+                model.addAttribute("emailExists", true);
+                bindingResult.addError(new ObjectError("emailExists", null, null,"Email already exists"));
+
+            } else{
+                currentGuest.setEmail(guest.getEmail());
+            }
+        }
+
+
+
+//        currentGuest.setEmail(guest.getEmail());
+//        currentGuest.setPhone(guest.getPhone());
+
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("actualizeData", true);
+            return "changeGuestAccountData";
+
+        }
+
+
         guestService.actualizeGuestData(currentGuest);
 
 

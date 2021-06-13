@@ -18,6 +18,10 @@
 </div>
 <div class="container">
     <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="post">
+        <p class="validationError" th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
+        <p class="validationError" th:if="${emailExists == true}">Account for given email already exists. </p>
+        <p class="validationError" th:if="${phoneExists == true}">Account for given phone already exists. </p>
+
         <div class="row">
             <div class="col-25">
                 <label>Unique identifier:</label>
@@ -31,7 +35,8 @@
                 <label>First name:</label>
             </div>
             <div class="col-75">
-                <label1 th:if="${actualizeData}"><input type="text" th:field="*{firstName}"/></label1>
+
+                <label1 th:if="${actualizeData}"><input type="text" th:field="*{firstName}" th:errorclass="inputValidationError"></label1>
             </div>
         </div>
         <div class="row">
@@ -39,7 +44,7 @@
                 <label>Last name:</label>
             </div>
             <div class="col-75">
-                <label1 th:if="${actualizeData}"><input type="text" th:field="*{secondName}"/></label1>
+                <label1 th:if="${actualizeData}"><input type="text" th:field="*{secondName}" th:errorclass="inputValidationError"></label1>
             </div>
         </div>
         <div class="row">
@@ -47,7 +52,7 @@
                 <label>Email:</label>
             </div>
             <div class="col-75">
-                <label1 th:if="${actualizeData}"><input type="text" th:field="*{email}"/></label1>
+                <label1 th:if="${actualizeData}"><input type="text" th:field="*{email}" th:errorclass="inputValidationError"></label1>
             </div>
         </div>
         <div class="row">
@@ -55,7 +60,7 @@
                 <label>Phone:</label>
             </span>
             <span class="col-75">
-                 <label1 th:if="${actualizeData}"> <input type="text" th:field="*{phone}"/></label1>
+                 <label1 th:if="${actualizeData}"> <input type="text" th:field="*{phone}" th:errorclass="inputValidationError"></label1>
             </span>
         </div>
         <br>
@@ -77,6 +82,18 @@
 </body>
 
 <style>
+
+    .validationError{
+        color: red;
+        font-weight: bold;
+    }
+
+    .inputValidationError{
+        border-color: red !important;
+    }
+
+
+
     /*<!--Input data------------------------------------->*/
     input[type=text], select, textarea {
         width: 100%;

@@ -7,14 +7,14 @@
 </head>
 
 <body>
-
+<div id="page-container">
 <div class="navbar">
     <a  th:href="@{/index}">Home</a>
     <a th:href="@{/reservation/rooms/nav}">Rooms</a>
     <a th:href="@{guests/account/nav}">Your Account</a>
     <a class="active" >About</a>
 </div>
-
+</div>
 
 
 
@@ -31,6 +31,8 @@
         background-attachment: fixed;
         background-size: cover;
         font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+        margin: 0;
     }
 
     /*Body---------------------------------------------------*/

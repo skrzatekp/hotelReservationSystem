@@ -10,9 +10,12 @@ import com.portfolioproject.demo.room.Room;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 
@@ -32,6 +35,7 @@ public class Reservation {
     @NotNull
     //@JsonManagedReference
     private Guest guest;
+
 
     @OneToOne
     @JoinColumn(name = "room_id")
@@ -120,4 +124,9 @@ public class Reservation {
     }
 
 
+   public double getTotalCost(){
+        double costPerNight = this.room.getCost();
+        long days = ChronoUnit.DAYS.between(this.getStart(), this.getEnd());
+        return costPerNight * days;
+    }
 }

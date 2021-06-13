@@ -139,7 +139,28 @@
 
 </div>
 <br>
-<! Poniżej butony----------------------------------------------------------------------------->
+<!--  Reservation view------------------------------------------------------------------------------------------------------------->
+<div class="container">
+    <form action="#"  th:object="${reservation}" method="get">
+        <div style="text-align: center; font-weight: bold; font-size: larger" class="row">
+            <label >Total cost:</label>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label >Cost:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1"  th:text="${totalCost}"></label>
+            </div>
+        </div>
+
+
+
+    </form>
+
+</div>
+<br>
+<!-- Buttons----------------------------------------------------------------------------->
 <div class="container">
 
     <div style="text-align: center;"  class="row">

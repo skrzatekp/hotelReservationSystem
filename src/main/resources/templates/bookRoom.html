@@ -18,6 +18,10 @@
 </div>
 <div class="container">
     <form action="#" th:action="@{/reservation/bookRoom}" th:object="${reservation}" method="post">
+        <p class="validationError" th:if="${wrongDate == true}">Choose correct data - Check in can't be after check out</p>
+        <p class="validationError" th:if="${theSameDate == true}">Choose correct data - Check in can't be equal check out</p>
+        <p class="validationError" th:if="${inThePast == true}">Choose correct data - Check in and check out can't be in the past</p>
+        <p class="validationError" th:if="${startOrEndNull == true}">Choose correct data - check in or check out not choosen</p>
         <div class="row">
             <div  style="width: 100%" class="col-25">
                 <label class="info">Check in:</label>
@@ -104,6 +108,12 @@
 
 </body>
 <style>
+    .validationError{
+        color: red;
+        font-weight: bold;
+    }
+
+
     /*info labels--------------------------------------------------*/
     .info {
     color: #0f4d94;

@@ -88,5 +88,16 @@ public class GuestService {
         return phoneExist || emailExist;
     }
 
+    boolean phoneExists(String phoneNumber) {
+        return guestRepository.findByPhone(phoneNumber).isPresent();
+
+    }
+
+    boolean emailExists(String email) {
+        return guestRepository.findByEmail(email).isPresent();
+
+
+    }
+
 
 }

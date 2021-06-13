@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Room View</title>
@@ -42,13 +42,23 @@
                 <label class="label1" th:text="*{beds}"></label>
             </div>
         </div>
+        <div class="row">
+            <div class="col-25">
+                <label class="label2">Cost per day:</label>
+            </div>
+            <div class="col-75">
+                <label class="label1" th:text="'$' + *{cost}"></label>
+            </div>
+        </div>
 
         <br>
     </form>
     <div style=" text-align: right"  class="row">
 
             <form class="forma" style="display: inline-block;"  action="#" th:action="@{/reservation/summary}" th:object="${choosenRoom}" method="post">
+             <span th:if="${choosenRoom.isRoomFree(reservation.getStart(), reservation.getEnd())}">
                 <button  class="bookRoom" th:value="${choosenRoom.number}" type="submit" name="number">Book room</button>
+             </span>
             </form>
 
 
