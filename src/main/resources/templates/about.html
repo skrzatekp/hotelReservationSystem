@@ -15,10 +15,104 @@
         <a class="active">About</a>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <p class="info"> This is a demo application for a hotel reservation system.</p><br>
+    </div>
+    <div class="row2">
+        <p class="info"> Used technologies and tools:</p>
+        <ol class="info">
+            <li>Core</li>
+            <ul>
+                <li>Java</li>
+                <li>Spring Boot</li>
+            </ul>
+            <li>Data</li>
+            <ul>
+                <li>H2 database</li>
+                <li>Flyway</li>
+            </ul>
+            <li>View</li>
+            <ul>
+                <li>Thymeleaf</li>
+                <li>HTML</li>
+                <li>CSS</li>
+            </ul>
+            <li>Test</li>
+            <ul>
+                <li>JUnit 5</li>
+                <li>Mockito</li>
+                <li>Postman</li>
+            </ul>
+
+        </ol> <br>
+        <span class="info"> Author:</span>
+        <a href="https://www.w3schools.com"><button  class="button" type="submit" name="accountView">GitHub</button></a>
+    </div>
+</div>
+</div>
+
+
 </body>
 
 
 <style th:inline="text">
+    /*information ---------------------------------------------------*/
+    .info {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: x-large;
+        color: #0f4d94;
+        margin: auto;
+        alignment: center;
+    }
+
+    label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+    }
+
+    .container {
+        border-radius: 5px;
+        padding: 20px;
+        border-style: solid;
+        display: inherit;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 60vw;
+        background-color: ghostwhite;
+        opacity: 0.85;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 25px;
+    }
+
+    /*Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .row {
+        margin: auto;
+        alignment: center;
+        text-align: center;
+    }
+
+    .row2:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .row2 {
+        margin: auto;
+        alignment: left;
+        text-align: left;
+    }
+
+    /*information ---------------------------------------------------*/
 
     /*Body---------------------------------------------------*/
     body {
@@ -35,24 +129,24 @@
 
     /*Button---------------------------------------------------*/
     .button {
-        background-color: dodgerblue;
+        background-color:royalblue;
         border: none;
         color: white;
-        padding: 4vh 5vw;
+        padding: 0.5vh 1vw;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 25px;
         margin: 5px;
         cursor: pointer;
-        border-radius: 5vh;
-        transition-duration: 0.4s;
+        border-radius: 1vh;
+        transition-duration: 0.2s;
         opacity: 0.85;
         white-space: nowrap;
     }
 
     .button:hover {
-        background-color: darkslateblue;
+        background-color: blue;
         color: white;
     }
 
