@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-interface RoomRepository extends JpaRepository<Room, Integer> {
+ interface RoomRepository extends JpaRepository<Room, Integer> {
 
     Optional<Room> findByNumber(String number);
 

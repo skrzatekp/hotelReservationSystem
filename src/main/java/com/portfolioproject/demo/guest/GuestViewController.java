@@ -23,11 +23,9 @@ public class GuestViewController {
     private final GuestService guestService;
     private final ReservationService reservationService;
 
-
     @Autowired
     public GuestViewController(GuestService guestService, ReservationService reservationService) {
         this.guestService = guestService;
-
         this.reservationService = reservationService;
     }
 
@@ -66,7 +64,6 @@ public class GuestViewController {
         return "guestAccount";
     }
 
-
     @PostMapping("register")
     String saveNewGuest(@ModelAttribute(value = "guest") @Valid Guest guest,
                         BindingResult bindingResult,
@@ -74,7 +71,6 @@ public class GuestViewController {
         if (bindingResult.hasErrors()) {
             return "addGuest";
         }
-
         model.addAttribute("guest", guest);
         currentGuest = guest;
         guestService.addGuest(guest);
@@ -96,7 +92,6 @@ public class GuestViewController {
         model.addAttribute("todayDate", LocalDate.now());
         return "guestAccount";
     }
-
 
     @GetMapping(value = "account")
     String guestAccount(Model model) {

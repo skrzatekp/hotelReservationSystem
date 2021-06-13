@@ -73,6 +73,10 @@ public class Reservation {
             return true;
         }
 
+        if(newStart.isBefore(oldStart) && newEnd.isAfter(oldEnd)){
+            return true;
+        }
+
         if (newStart.isEqual(oldStart) ||
                 newStart.isEqual(oldEnd) ||
                 newEnd.isEqual(oldStart) ||

@@ -31,7 +31,6 @@ public class ReservationService {
     }
 
     Reservation addReservation(String guestUuid, String roomNumber, LocalDate start, LocalDate end) {
-
         Room room;
         if (roomService.readByNumber(roomNumber).isPresent()) {
             room = roomService.readByNumber(roomNumber).get();

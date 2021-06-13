@@ -38,7 +38,6 @@ public class RoomController {
     @PostMapping(value = "add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Room> addNewRoom(@RequestBody Room room) {
         if (roomService.roomAlreadyExist(room)) {
-            //TODO change to throwing "Room already exist exception"
             return ResponseEntity.status(400).build();
         } else {
             roomService.addRoom(room);
