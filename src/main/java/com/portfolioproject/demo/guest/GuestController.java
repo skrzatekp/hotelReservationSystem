@@ -69,10 +69,9 @@ public class GuestController {
     }
 
     @Transactional
-    @PostMapping(value = "add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
+    @PostMapping(value = "add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Guest> addNewGuest(@RequestBody Guest guest) {
-        if (guestService.phoneOrEmailAlreadyExists(guest)){
-            //TODO change to throwing "User already exist exception" or "User with given data already exist"
+        if (guestService.phoneOrEmailAlreadyExists(guest)) {
             return ResponseEntity.status(400).build();
         } else {
             guestService.addGuest(guest);
@@ -80,16 +79,10 @@ public class GuestController {
         }
     }
 
-
-    
     @Transactional
-    @PatchMapping( consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
+    @PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Guest> actualizeGuestData(@RequestBody Guest guest) {
         Optional<Guest> actualizedGuest = guestService.actualizeGuestData(guest);
         return actualizedGuest.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
     }
-
 }
-
-
-// TODO change returning objects from Guest to Guest DTO -> I don't want to return id number from database

@@ -8,17 +8,13 @@
 
 <body>
 <div id="page-container">
-<div class="navbar">
-    <a  th:href="@{/index}">Home</a>
-    <a th:href="@{/reservation/rooms/nav}">Rooms</a>
-    <a th:href="@{guests/account/nav}">Your Account</a>
-    <a class="active" >About</a>
+    <div class="navbar">
+        <a th:href="@{/index}">Home</a>
+        <a th:href="@{/reservation/rooms/nav}">Rooms</a>
+        <a th:href="@{guests/account/nav}">Your Account</a>
+        <a class="active">About</a>
+    </div>
 </div>
-</div>
-
-
-
-
 </body>
 
 
@@ -70,20 +66,6 @@
     /*Button---------------------------------------------------*/
 
 
-
-    /*Info Box---------------------------------------------------*/
-    .deletionInformation {
-        color: red;
-        font-size: 25px;
-        background: ghostwhite;
-        text-align: center;
-        border: 3px solid red;
-        margin: auto;
-        width: 60%;
-    }
-
-    /*Info Box---------------------------------------------------*/
-
     /*Navigation bar---------------------------------------------------*/
     * {
         box-sizing: border-box
@@ -121,7 +103,6 @@
             width: 100%;
             text-align: left;
         }
-
     }
 
     /*Navigation bar---------------------------------------------------*/

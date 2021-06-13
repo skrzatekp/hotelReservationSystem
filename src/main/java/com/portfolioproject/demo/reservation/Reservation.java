@@ -1,6 +1,5 @@
 package com.portfolioproject.demo.reservation;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -10,8 +9,6 @@ import com.portfolioproject.demo.room.Room;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -33,14 +30,12 @@ public class Reservation {
     @OneToOne
     @JoinColumn(name = "guest_id")
     @NotNull
-    //@JsonManagedReference
     private Guest guest;
 
 
     @OneToOne
     @JoinColumn(name = "room_id")
     @NotNull
-    //@JsonManagedReference
     private Room room;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, fallbackPatterns = {"dd.MM.yyyy"})
@@ -124,7 +119,7 @@ public class Reservation {
     }
 
 
-   public double getTotalCost(){
+    public double getTotalCost() {
         double costPerNight = this.room.getCost();
         long days = ChronoUnit.DAYS.between(this.getStart(), this.getEnd());
         return costPerNight * days;

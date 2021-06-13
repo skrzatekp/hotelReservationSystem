@@ -18,8 +18,6 @@ import java.time.LocalDate;
 @RequestMapping(path = "/reservation")
 public class ReservationViewController {
 
-    //po testach zmienić na currentGuest = GuestViewController.getCurrentGuest();
-
     private GuestService guestService;
     private Guest currentGuest;
     private RoomService roomService;
@@ -38,11 +36,9 @@ public class ReservationViewController {
         return currentReservation;
     }
 
-
     @GetMapping(value = "bookRoom")
     String bookRoom(Model model) {
         currentGuest = GuestViewController.getCurrentGuest();
-//        currentGuest = guestService.readByUuid("df520b4c-c172-11eb-8529-0242ac130003").get();
         model.addAttribute("currentGuest", currentGuest);
         currentReservation = new Reservation();
         model.addAttribute("reservation", currentReservation);
@@ -60,7 +56,6 @@ public class ReservationViewController {
             return "addGuest";
         } else {
             currentGuest = GuestViewController.getCurrentGuest();
-//        currentGuest = guestService.readByUuid("df520b4c-c172-11eb-8529-0242ac130003").get();
             model.addAttribute("currentGuest", currentGuest);
             currentReservation = new Reservation();
             model.addAttribute("reservation", currentReservation);
@@ -68,7 +63,6 @@ public class ReservationViewController {
         }
     }
 
-//TUUUUU
     @PostMapping(value = "bookRoom", params = "showRooms")
     String bookRoom(@RequestParam(required = false) String freeRooms, @ModelAttribute Reservation reservation, BindingResult bindingResult, @ModelAttribute Room room, Model model) {
 
@@ -76,45 +70,32 @@ public class ReservationViewController {
         model.addAttribute("chosenRoom", currentRoom);
         model.addAttribute("currentGuest", currentGuest);
 
-
-        if(reservation.getStart() == null || reservation.getEnd() == null){
-            bindingResult.addError(new ObjectError("wrongDate", null, null,"Start and equal can't be null"));
+        if (reservation.getStart() == null || reservation.getEnd() == null) {
+            bindingResult.addError(new ObjectError("wrongDate", null, null, "Start and equal can't be null"));
             model.addAttribute("startOrEndNull", true);
             return "bookRoom";
         }
 
+        if (!reservation.getStart().isBefore(reservation.getEnd())) {
+            bindingResult.addError(new ObjectError("wrongDate", null, null, "Start cant be after end"));
+            model.addAttribute("wrongDate", true);
+        }
 
-
-       if(!reservation.getStart().isBefore(reservation.getEnd())){
-           bindingResult.addError(new ObjectError("wrongDate", null, null,"Start cant be after end"));
-           model.addAttribute("wrongDate", true);
-       }
-
-        if(reservation.getStart().isEqual(reservation.getEnd())){
-            bindingResult.addError(new ObjectError("wrongDate", null, null,"Start and end can't be equal"));
+        if (reservation.getStart().isEqual(reservation.getEnd())) {
+            bindingResult.addError(new ObjectError("wrongDate", null, null, "Start and end can't be equal"));
             model.addAttribute("theSameDate", true);
         }
 
-        if(reservation.getStart().isBefore(LocalDate.now())){
-            bindingResult.addError(new ObjectError("wrongDate", null, null,"Start and equal can't be in the past"));
+        if (reservation.getStart().isBefore(LocalDate.now())) {
+            bindingResult.addError(new ObjectError("wrongDate", null, null, "Start and equal can't be in the past"));
             model.addAttribute("inThePast", true);
         }
 
-
-
-
-
-
-       if(bindingResult.hasErrors()){
-           return "bookRoom";
-       }
-
+        if (bindingResult.hasErrors()) {
+            return "bookRoom";
+        }
 
         currentReservation = reservation;
-
-//        if(currentReservation.getStart().isAfter(currentReservation.getEnd()) || currentReservation.getStart().isEqual(currentReservation.getEnd())){
-//            throw new IllegalArgumentException("End of reservation should be after start of reservation");
-//        }
 
         model.addAttribute("reservation", currentReservation);
         model.addAttribute("showingRooms", true);
@@ -143,7 +124,7 @@ public class ReservationViewController {
 
     @GetMapping(value = "payment")
     String payment(Model model) {
-        if(guestService.readByUuid(currentGuest.getUuid()).isEmpty()){
+        if (guestService.readByUuid(currentGuest.getUuid()).isEmpty()) {
             model.addAttribute("guestNotExist", true);
             model.addAttribute("guest", new Guest());
             return "addGuest";
@@ -153,6 +134,4 @@ public class ReservationViewController {
 
         return "payment";
     }
-
-
 }

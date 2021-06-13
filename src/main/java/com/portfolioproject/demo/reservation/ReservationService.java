@@ -36,7 +36,6 @@ public class ReservationService {
         if (roomService.readByNumber(roomNumber).isPresent()) {
             room = roomService.readByNumber(roomNumber).get();
         } else {
-            //TODO throw not such room Exception
             throw new IllegalArgumentException("No such room");
         }
 
@@ -46,7 +45,6 @@ public class ReservationService {
         if (guestService.readByUuid(guestUuid).isPresent()) {
             guest = guestService.readByUuid(guestUuid).get();
         } else {
-            //TODO throw not such room Exception
             throw new IllegalArgumentException("No such guest");
         }
 
@@ -59,13 +57,11 @@ public class ReservationService {
         return reservationRepository.save(reservation);
     }
 
-
     Optional<List<Reservation>> readAllReservations() {
         return Optional.of(reservationRepository.findAll());
     }
 
-
-   public List<Reservation> getAllGuestReservationsFor(String guestUuid) {
+    public List<Reservation> getAllGuestReservationsFor(String guestUuid) {
         List<Reservation> all = reservationRepository.findAll();
         List<Reservation> guestReservations = new ArrayList<>();
 
@@ -91,19 +87,16 @@ public class ReservationService {
 
     @Transactional
     public void deleteReservation(String uuid) {
-        //TODO add feature: you can't delete reservation when it is i dont know one day before
         reservationRepository.deleteByUuid(uuid);
     }
 
     public Optional<Reservation> readByUuid(String uuid) {
-      return  reservationRepository.findByUuid(uuid);
+        return reservationRepository.findByUuid(uuid);
     }
 
-
-    double calculateTotalCost(Reservation reservation, Room currentRoom){
+    double calculateTotalCost(Reservation reservation, Room currentRoom) {
         double costPerNight = currentRoom.getCost();
         long days = ChronoUnit.DAYS.between(reservation.getStart(), reservation.getEnd());
         return costPerNight * days;
     }
-
 }

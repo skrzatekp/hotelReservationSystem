@@ -1,16 +1,15 @@
 package com.portfolioproject.demo.room;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.portfolioproject.demo.reservation.Reservation;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-
 import java.time.LocalDate;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "rooms")
@@ -66,7 +65,7 @@ public class Room {
     }
 
     public Set<Reservation> getReservations() {
-        if(this.reservations == null){
+        if (this.reservations == null) {
             this.reservations = new HashSet<>();
         }
         return reservations;
@@ -98,14 +97,12 @@ public class Room {
     }
 
 
-    public boolean isRoomFree(LocalDate start, LocalDate end){
-        for (Reservation reservation : reservations ) {
-            if(reservation.haveConflictWith(start, end)){
+    public boolean isRoomFree(LocalDate start, LocalDate end) {
+        for (Reservation reservation : reservations) {
+            if (reservation.haveConflictWith(start, end)) {
                 return false;
             }
         }
-
-
         return true;
     }
 }

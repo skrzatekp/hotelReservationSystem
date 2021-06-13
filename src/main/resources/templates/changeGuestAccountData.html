@@ -8,9 +8,8 @@
 <body>
 <div id="page-container">
     <div class="navbar">
-
         <a th:href="@{/index}">Home</a>
-        <a th:href="@{/reservation/rooms/nav}" >Rooms</a>
+        <a th:href="@{/reservation/rooms/nav}">Rooms</a>
         <a class="active">Your Account</a>
         <a th:href="@{/about}">About</a>
     </div>
@@ -35,8 +34,8 @@
                 <label>First name:</label>
             </div>
             <div class="col-75">
-
-                <label1 th:if="${actualizeData}"><input type="text" th:field="*{firstName}" th:errorclass="inputValidationError"></label1>
+                <label1 th:if="${actualizeData}"><input type="text" th:field="*{firstName}"
+                                                        th:errorclass="inputValidationError"></label1>
             </div>
         </div>
         <div class="row">
@@ -44,7 +43,8 @@
                 <label>Last name:</label>
             </div>
             <div class="col-75">
-                <label1 th:if="${actualizeData}"><input type="text" th:field="*{secondName}" th:errorclass="inputValidationError"></label1>
+                <label1 th:if="${actualizeData}"><input type="text" th:field="*{secondName}"
+                                                        th:errorclass="inputValidationError"></label1>
             </div>
         </div>
         <div class="row">
@@ -52,7 +52,8 @@
                 <label>Email:</label>
             </div>
             <div class="col-75">
-                <label1 th:if="${actualizeData}"><input type="text" th:field="*{email}" th:errorclass="inputValidationError"></label1>
+                <label1 th:if="${actualizeData}"><input type="text" th:field="*{email}"
+                                                        th:errorclass="inputValidationError"></label1>
             </div>
         </div>
         <div class="row">
@@ -60,39 +61,33 @@
                 <label>Phone:</label>
             </span>
             <span class="col-75">
-                 <label1 th:if="${actualizeData}"> <input type="text" th:field="*{phone}" th:errorclass="inputValidationError"></label1>
+                 <label1 th:if="${actualizeData}"> <input type="text" th:field="*{phone}"
+                                                          th:errorclass="inputValidationError"></label1>
             </span>
         </div>
         <br>
         <div class="row">
             <span> <button class="buttonChange" type="submit" name="saveChanges">SaveChanges</button></span>
-
     </form>
-
     <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="get">
                     <span>  <button class="buttonDelete" type="submit"
                                     name="deleteAccount">Delete account</button><span>
     </form>
 </div>
 </div>
-
-
-
-
 </body>
-
 <style>
-
-    .validationError{
+    /*validation--------------------------------------------------*/
+    .validationError {
         color: red;
         font-weight: bold;
     }
 
-    .inputValidationError{
+    .inputValidationError {
         border-color: red !important;
     }
 
-
+    /*validation--------------------------------------------------*/
 
     /*<!--Input data------------------------------------->*/
     input[type=text], select, textarea {
@@ -102,10 +97,10 @@
         border-radius: 4px;
         resize: vertical;
         font-size: large;
-
         display: inline-block;
         font-weight: bold;
     }
+
     /*<!--Input data------------------------------------->*/
 
     /*<!--Guest data------------------------------------->*/
@@ -226,7 +221,6 @@
     /*navigation bar---------------------------------------------------*/
 
 
-
     /*Container for input form---------------------------------------------------*/
     .container {
         border-radius: 5px;
@@ -273,7 +267,5 @@
     }
 
     /*Container for input form---------------------------------------------------*/
-
-
 </style>
 </html>

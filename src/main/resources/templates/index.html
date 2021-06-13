@@ -14,9 +14,7 @@
     <a th:href="@{/about}">About</a>
 </div>
 <br>
-
 <div class="deletionInformation" th:if="${message != null}">Your account was deleted.</div>
-
 <div class="center">
     <div>
         <form action="#" th:action="@{/guests/register}" method="get">
@@ -25,16 +23,11 @@
     </div>
     <div>
         <form action="#" th:action="@{/guests/account/existing}" method="get">
-        <button class="button">Use existing <br> account</button>
+            <button class="button">Use existing <br> account</button>
         </form>
     </div>
 </div>
-
-
-
 </body>
-
-
 <style th:inline="text">
 
     /*Body---------------------------------------------------*/
@@ -81,8 +74,6 @@
     }
 
     /*Button---------------------------------------------------*/
-
-
 
     /*Info Box---------------------------------------------------*/
     .deletionInformation {
@@ -134,11 +125,8 @@
             width: 100%;
             text-align: left;
         }
-
     }
 
     /*Navigation bar---------------------------------------------------*/
-
-
 </style>
 </html>

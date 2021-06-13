@@ -8,9 +8,8 @@
 <body>
 <div id="page-container">
     <div class="navbar">
-
         <a th:href="@{/index}">Home</a>
-        <a  class="active">Rooms</a>
+        <a class="active">Rooms</a>
         <a th:href="@{/guests/account/nav}">Your Account</a>
         <a th:href="@{/about}">About</a>
     </div>
@@ -18,31 +17,31 @@
 </div>
 <div class="container">
     <form action="#" th:action="@{/reservation/bookRoom}" th:object="${reservation}" method="post">
-        <p class="validationError" th:if="${wrongDate == true}">Choose correct data - Check in can't be after check out</p>
-        <p class="validationError" th:if="${theSameDate == true}">Choose correct data - Check in can't be equal check out</p>
-        <p class="validationError" th:if="${inThePast == true}">Choose correct data - Check in and check out can't be in the past</p>
-        <p class="validationError" th:if="${startOrEndNull == true}">Choose correct data - check in or check out not choosen</p>
+        <p class="validationError" th:if="${wrongDate == true}">Choose correct data - Check in can't be after check
+            out</p>
+        <p class="validationError" th:if="${theSameDate == true}">Choose correct data - Check in can't be equal check
+            out</p>
+        <p class="validationError" th:if="${inThePast == true}">Choose correct data - Check in and check out can't be in
+            the past</p>
+        <p class="validationError" th:if="${startOrEndNull == true}">Choose correct data - check in or check out not
+            choosen</p>
         <div class="row">
-            <div  style="width: 100%" class="col-25">
+            <div style="width: 100%" class="col-25">
                 <label class="info">Check in:</label>
             </div>
             <div style="width: 100%" class="col-25">
                 <input style="width: 200px; text-align: center" type="date" th:field="*{start}"/>
             </div>
-
-
         </div>
         <div class="row">
             <div style="width: 100%" class="col-25">
-                <label class="info" >Check out:</label>
+                <label class="info">Check out:</label>
             </div>
             <div style="width: 100%" class="col-25">
                 <input style="width: 200px; text-align: center" type="date" th:field="*{end}"/>
             </div>
         </div>
-
         <div class="row">
-
             <div style=" width: 100%; text-align: center;" class="col-25">
                 <input style="alignment: center" type="checkbox" id="freeRooms" name="freeRooms" value=true>
                 <label style="color: #0f4d94" for="freeRooms">Only free rooms</label><br>
@@ -51,13 +50,11 @@
             </div>
         </div>
     </form>
-
-
 </div>
 <br>
 <div class="containerForTable">
-
- <span class="info" th:if="${showingRooms}"> List of rooms: <br>
+ <span class="info" style="font-size: large; font-weight: bold" th:if="${showingRooms}"> List of rooms: <br>
+     <br>
         <table style="margin-left: auto; margin-right: auto;" id="roomList">
             <thead style="background-color: grey">
             <tr>
@@ -69,18 +66,16 @@
             </tr>
             </thead>
             <tbody>
-
                 <tr th:each="room : ${listOfRooms}">
                     <form action="#" th:action="@{/reservation/summary}" th:object="${chosenRoom}" method="post">
                         <td th:text="${room.number}"></td>
                         <td th:text="${room.floor}"></td>
                         <td th:text="${room.beds}"></td>
-
-
                         <td>
                            <span th:if="${room.isRoomFree(reservation.getStart(), reservation.getEnd())}">
-                               <button class="buttonTakeRoom"  th:value="${room.number}" th:action="${chosenRoom.setNumber(name)}" type="submit"
-                                   name="number">Choose Room</button> </span>
+                               <button class="buttonTakeRoom" th:value="${room.number}"
+                                       th:action="${chosenRoom.setNumber(name)}" type="submit"
+                                       name="number">Choose Room</button> </span>
                             <span th:unless="${room.isRoomFree(reservation.getStart(), reservation.getEnd())}"><label>Not available</label></span>
                         </td>
                     </form>
@@ -91,35 +86,29 @@
                                          type="submit" name="number">Show Room</button>
                              </form>
                          </td>
-
                 </tr>
             </tbody>
         </table>
-
     </span>
-
-
 </div>
 </div>
-
-
-
-
-
 </body>
 <style>
-    .validationError{
+    /*validation--------------------------------------------------*/
+    .validationError {
         color: red;
         font-weight: bold;
     }
 
+    /*validation--------------------------------------------------*/
 
     /*info labels--------------------------------------------------*/
     .info {
-    color: #0f4d94;
+        color: #0f4d94;
         display: block;
         text-align: center
     }
+
     /*info labels--------------------------------------------------*/
 
     /*buttons--------------------------------------------------*/
@@ -232,16 +221,6 @@
 
     }
 
-    .col-75 {
-        float: right;
-        width: 50%;
-        margin-top: 6px;
-        text-align: left;
-        overflow-wrap: break-word;
-
-        /*overflow: auto;*/
-    }
-
     /* Clear floats after the columns */
     .row:after {
         content: "";
@@ -250,6 +229,7 @@
     }
 
     /*Container for input form---------------------------------------------------*/
+
     /*table---------------------------------------------------*/
     table {
         font-family: arial, sans-serif;
@@ -282,8 +262,6 @@
     }
 
     /*body---------------------------------------------------*/
-
-
 
     /*navigation bar---------------------------------------------------*/
     * {
@@ -322,7 +300,6 @@
             width: 100%;
             text-align: left;
         }
-
     }
 
     * {
@@ -335,7 +312,6 @@
         .col-25, .col-75, input[type=submit] {
             width: 100%;
             margin-top: 0;
-
         }
     }
 
@@ -343,15 +319,9 @@
         .containerForTable {
             width: 90%;
             margin-top: 0;
-
         }
     }
 
     /*navigation bar---------------------------------------------------*/
-
-
 </style>
-
-
-
 </html>

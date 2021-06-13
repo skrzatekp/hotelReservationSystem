@@ -5,12 +5,10 @@
     <title>Room View</title>
 </head>
 <body>
-
 <div id="page-container">
     <div class="navbar">
-
         <a th:href="@{/index}">Home</a>
-        <a th:href="@{/reservation/rooms/nav}" >Rooms</a>
+        <a th:href="@{/reservation/rooms/nav}">Rooms</a>
         <a th:href="@{/guests/account/nav}">Your Account</a>
         <a th:href="@{/about}">About</a>
     </div>
@@ -50,137 +48,98 @@
                 <label class="label1" th:text="'$' + *{cost}"></label>
             </div>
         </div>
-
         <br>
     </form>
-    <div style=" text-align: right"  class="row">
-
-            <form class="forma" style="display: inline-block;"  action="#" th:action="@{/reservation/summary}" th:object="${choosenRoom}" method="post">
+    <div style=" text-align: right" class="row">
+        <form class="forma" style="display: inline-block;" action="#" th:action="@{/reservation/summary}"
+              th:object="${choosenRoom}" method="post">
              <span th:if="${choosenRoom.isRoomFree(reservation.getStart(), reservation.getEnd())}">
-                <button  class="bookRoom" th:value="${choosenRoom.number}" type="submit" name="number">Book room</button>
+                <button class="bookRoom" th:value="${choosenRoom.number}" type="submit" name="number">Book room</button>
              </span>
-            </form>
-
-
-
-            <button  class="goBack" onclick="goBack()">Go Back</button>
-
+        </form>
+        <button class="goBack" onclick="goBack()">Go Back</button>
     </div>
-
-
 </div>
 <br>
 <div class="containerForGallery">
     <form style="opacity: 1" action="#" th:object="${choosenRoom}" method="get">
-
         <div class="responsive">
             <div class="gallery">
-
                 <div class="click-zoom">
                     <label style="opacity: 1">
-                        <input  type="checkbox">
-                        <img th:src="@{${choosenRoom.number}  + '.jpg'}"  >
-
+                        <input type="checkbox">
+                        <img th:src="@{${choosenRoom.number}  + '.jpg'}">
                     </label>
                 </div>
-
             </div>
         </div>
-
         <div class="responsive">
             <div class="gallery">
-
                 <div class="click-zoom">
                     <label style="opacity: 1">
-                        <input  type="checkbox">
-                        <img th:src="@{w1.jpg}"  >
+                        <input type="checkbox">
+                        <img th:src="@{w1.jpg}">
                     </label>
                 </div>
-
             </div>
         </div>
-
         <div style="opacity: 1" class="responsive">
-            <div  style="opacity: 1" class="gallery">
-
+            <div style="opacity: 1" class="gallery">
                 <div style="opacity: 1" class="click-zoom">
                     <label style="opacity: 1">
                         <input style="opacity: 1" type="checkbox">
-                        <img style="opacity: 1" th:src="@{w2.jpg}"  >
+                        <img style="opacity: 1" th:src="@{w2.jpg}">
                     </label>
                 </div>
-
             </div>
         </div>
-
         <div class="responsive">
             <div class="gallery">
-
                 <div class="click-zoom">
                     <label style="opacity: 1">
-                        <input  type="checkbox">
-                        <img th:src="@{w3.jpg}"  >
+                        <input type="checkbox">
+                        <img th:src="@{w3.jpg}">
                     </label>
                 </div>
-
             </div>
         </div>
-
-
-
-
-
         <div class="clearfix"></div>
     </form>
-
-
 </div>
-
-
-
-
-
 </body>
-
 <script>
     function goBack() {
         window.history.back();
     }
 </script>
-
 <style>
-
-
-    /*<!--Galery------------------------------------->*/
-
-    img{
-        max-width: 100%;max-height: 100%;
+    /*<!--Gallery------------------------------------->*/
+    img {
+        max-width: 100%;
+        max-height: 100%;
         opacity: 1;
-
     }
+
     .click-zoom input[type=checkbox] {
         display: none;
         opacity: 1;
     }
 
     .click-zoom img {
-        /*margin: auto;*/
         transition: transform 0.25s ease;
         cursor: zoom-in;
         margin-left: auto;
         margin-right: auto;
     }
 
-    .click-zoom input[type=checkbox]:checked~img {
+    .click-zoom input[type=checkbox]:checked ~ img {
         transform: scale(2);
         cursor: zoom-out;
     }
 
     div.gallery {
-        /*border: 1px solid #ccc;*/
         padding-left: 8px;
         padding-top: 2px;
-
     }
 
     div.gallery:hover {
@@ -190,8 +149,6 @@
     div.gallery img {
         width: 100%;
         height: 100%;
-
-
     }
 
     div.desc {
@@ -207,7 +164,6 @@
         padding: 6px;
         float: left;
         width: 24.99999%;
-
     }
 
     @media only screen and (max-width: 700px) {
@@ -220,7 +176,6 @@
     @media only screen and (max-width: 500px) {
         .responsive {
             width: 100%;
-
         }
     }
 
@@ -230,16 +185,16 @@
         clear: both;
     }
 
-    /*<!--Galery------------------------------------->*/
-
+    /*<!--Gallery------------------------------------->*/
 
     /*<!--Room data------------------------------------->*/
-    .label2{
+    .label2 {
         padding: 8px 8px 8px 0;
         display: inline-block;
         width: 100%;
         color: #0f4d94;
     }
+
     label {
         padding: 8px 8px 8px 0;
         display: inline-block;
@@ -258,16 +213,6 @@
 
     /*<!--Room data------------------------------------->*/
 
-
-    /*info labels--------------------------------------------------*/
-    .info {
-        color: #0f4d94;
-        display: block;
-        text-align: center
-    }
-
-    /*info labels--------------------------------------------------*/
-
     /*buttons--------------------------------------------------*/
     .goBack {
         background-color: deepskyblue;
@@ -276,8 +221,6 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        /*float: right;*/
-        /*margin: auto;*/
         margin: 5px;
     }
 
@@ -292,8 +235,6 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        /*float: right;*/
-        /*margin: auto;*/
         margin: 5px;
     }
 
@@ -301,12 +242,10 @@
         background-color: forestgreen;
     }
 
-
     /*buttons--------------------------------------------------*/
 
     /*<!--Input data------------------------------------->*/
     input[type=data], select, textarea {
-
         padding: 12px;
         border: 1px solid #ccc;
         border-radius: 4px;
@@ -314,7 +253,6 @@
         font-size: large;
         display: inline-block;
         font-weight: bold;
-
     }
 
     /*<!--Input data------------------------------------->*/
@@ -323,14 +261,12 @@
     .container {
         border-radius: 5px;
         padding: 20px;
-
         border-style: solid;
         display: inherit;
         justify-content: center;
         align-items: center;
         height: auto;
         width: 60vw;
-
         background-color: ghostwhite;
         opacity: 0.85;
         margin: auto;
@@ -340,18 +276,13 @@
     .containerForGallery {
         border-radius: 5px;
         padding: 20px;
-
         border-style: solid;
         display: inherit;
         justify-content: center;
         align-items: center;
         height: auto;
         width: 60vw;
-
         background-color: rgb(248, 248, 255, 0.85);
-
-
-
         margin: auto;
         overflow-wrap: break-word;
     }
@@ -362,8 +293,6 @@
         margin-top: 6px;
         text-align: right;
         overflow-wrap: break-word;
-
-
     }
 
     .col-75 {
@@ -372,8 +301,6 @@
         margin-top: 6px;
         text-align: left;
         overflow-wrap: break-word;
-
-        /*overflow: auto;*/
     }
 
     /* Clear floats after the columns */
@@ -384,25 +311,6 @@
     }
 
     /*Container for input form---------------------------------------------------*/
-    /*table---------------------------------------------------*/
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 80%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: center;
-        padding: 3px;
-        margin: auto;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-
-    /*table---------------------------------------------------*/
 
     /*body---------------------------------------------------*/
     body {
@@ -416,8 +324,6 @@
     }
 
     /*body---------------------------------------------------*/
-
-
 
     /*navigation bar---------------------------------------------------*/
     * {
@@ -456,7 +362,6 @@
             width: 100%;
             text-align: left;
         }
-
     }
 
     * {
@@ -469,38 +374,16 @@
         input[type=submit], .bookRoom, .goBack, .forma {
             width: 100%;
             margin-top: 0;
-
-
         }
-
-
     }
+
     @media screen and (max-width: 600px) {
         .col-25, .col-75 {
             width: 48%;
             margin-top: 0;
-
-
         }
-
-
     }
 
-
-
     /*navigation bar---------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
 </style>
 </html>

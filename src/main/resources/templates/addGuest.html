@@ -20,15 +20,17 @@
 
 <div class="container">
     <form action="#" th:action="@{/guests/register}" th:object="${guest}" method="post">
-        <p class="validationError" th:if="${guestNotExist == true}">You deleted your account. Can't make reservation for deleted account.</p>
-       <p class="validationError" th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
-        <p class="validationError" th:if="${alreadyDeleted == true}">Guest was already deleted</p>
+        <p class="validationError" th:if="${guestNotExist == true}">You deleted your account. Can't make reservation for
+            deleted account.</p>
+        <p class="validationError" th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
+        <p class="validationError" th:if="${alreadyDeleted == true}">Account was already deleted</p>
         <div class="row">
             <div class="col-25">
                 <label for="fname">First Name</label>
             </div>
             <div class="col-75">
-                <input type="text" th:field="*{firstName}" placeholder="Your name.." id="fname" th:errorclass="inputValidationError">
+                <input type="text" th:field="*{firstName}" placeholder="Your name.." id="fname"
+                       th:errorclass="inputValidationError">
             </div>
         </div>
         <div class="row">
@@ -36,7 +38,8 @@
                 <label for="lname">Last Name</label>
             </div>
             <div class="col-75">
-                <input type="text" th:field="*{secondName}" placeholder="Your last name.." id="lname" th:errorclass="inputValidationError">
+                <input type="text" th:field="*{secondName}" placeholder="Your last name.." id="lname"
+                       th:errorclass="inputValidationError">
             </div>
         </div>
         <div class="row">
@@ -44,7 +47,8 @@
                 <label for="phone">Email</label>
             </div>
             <div class="col-75">
-                <input type="text" th:field="*{email}" placeholder="Your email.." id="email" th:errorclass="inputValidationError">
+                <input type="text" th:field="*{email}" placeholder="Your email.." id="email"
+                       th:errorclass="inputValidationError">
             </div>
         </div>
         <div class="row">
@@ -52,11 +56,11 @@
                 <label for="phone">Phone</label>
             </div>
             <div class="col-75">
-                <input type="text" th:field="*{phone}" placeholder="Your phone.." id="phone" th:errorclass="inputValidationError">
+                <input type="text" th:field="*{phone}" placeholder="Your phone.." id="phone"
+                       th:errorclass="inputValidationError">
             </div>
         </div>
         <br>
-
         <div class="row">
             <button id="fakeDataButton" onclick="getData()" type="button">Get fake data</button>
             <input type="submit" value="Register">
@@ -64,8 +68,6 @@
     </form>
 
 </div>
-
-
 </body>
 
 <script>
@@ -81,30 +83,28 @@
         'Mason', 'Le', 'Simmons', 'Palmer',
         'Garner', 'Sellers', 'Hobbs', 'Bennett'];
 
-
     function getData() {
         const fnumber = Math.floor(Math.random() * firstNames.length);
         const lnumber = Math.floor(Math.random() * lastNames.length);
         document.getElementById("fname").value = firstNames[fnumber];
         document.getElementById("lname").value = lastNames[lnumber];
-        document.getElementById("phone").value =(parseInt(Math.floor(Math.random() * 100000000) + 100000000-1)).toString();
-        document.getElementById("email").value = document.getElementById("fname").value +  document.getElementById("lname").value + (parseInt(Math.floor((Math.random() * 100000) + 1))).toString()  +  "@example.com";
+        document.getElementById("phone").value = (parseInt(Math.floor(Math.random() * 100000000) + 100000000 - 1)).toString();
+        document.getElementById("email").value = document.getElementById("fname").value + document.getElementById("lname").value + (parseInt(Math.floor((Math.random() * 100000) + 1))).toString() + "@example.com";
     }
 </script>
 
 <style th:inline="text">
-
-    .validationError{
+    /*validation--------------------------------------------------*/
+    .validationError {
         color: red;
         font-weight: bold;
     }
 
-    .inputValidationError{
+    .inputValidationError {
         border-color: red !important;
     }
 
-
-
+    /*validation--------------------------------------------------*/
 
     /*Body---------------------------------------------------*/
     body {
@@ -253,8 +253,6 @@
     }
 
     /*Container for input form---------------------------------------------------*/
-
-
 
 </style>
 </html>

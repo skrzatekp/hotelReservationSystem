@@ -6,24 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-
 <div class="container">
     <div class="row">
-            <label class="info"> This is a dummy paying site. Go back to your account where you can see and cancel your reservation.</label><br>
+        <label class="info"> This is a dummy paying site. Go back to your account where you can see and cancel your
+            reservation.</label><br>
     </div>
     <div class="row">
         <div class="center">
             <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="post">
                 <button class="button" type="submit" name="accountView">Your Account</button>
             </form>
+        </div>
     </div>
-
 </div>
-
-
-
-</div>
-
 </body>
 <style th:inline="text">
 
@@ -55,7 +50,6 @@
         margin-left: auto;
         margin-right: auto;
         margin-top: 25px;
-
     }
 
     /* Clear floats after the columns */
@@ -69,8 +63,8 @@
         margin: auto;
         alignment: center;
         text-align: center;
-
     }
+
     /*information about created account---------------------------------------------------*/
 
     /*button---------------------------------------------------*/
@@ -103,6 +97,7 @@
         align-items: center;
         height: 50vh;
     }
+
     /*button---------------------------------------------------*/
 
     /*body---------------------------------------------------*/
@@ -115,62 +110,7 @@
         height: 100vh;
         margin: 0;
     }
+
     /*body---------------------------------------------------*/
-
-    /*navigation bar---------------------------------------------------*/
-    * {
-        box-sizing: border-box
-    }
-
-    .navbar {
-        width: 100%;
-        background-color: #555;
-        overflow: auto;
-    }
-
-    .navbar a {
-        float: left;
-        padding: 12px;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-        width: 25%; /* Four links of equal widths */
-        text-align: center;
-    }
-
-    .navbar a:hover {
-        background-color: darkslateblue;
-        transition-duration: 0.4s;
-    }
-
-    .navbar a.active {
-        background-color: #0f4d94;
-    }
-
-    @media screen and (max-width: 500px) {
-        .navbar a {
-            float: none;
-            display: block;
-            width: 100%;
-            text-align: left;
-        }
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead
-    of next to each other */
-    @media screen and (max-width: 600px) {
-        .col-25, .col-75, input[type=submit], #fakeDataButton {
-            width: 100%;
-            margin-top: 0;
-        }
-    }
-    /*navigation bar---------------------------------------------------*/
-
-
-
 </style>
 </html>

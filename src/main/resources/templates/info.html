@@ -5,20 +5,14 @@
     <title>Account created!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
 <body>
-
-
-    <div class="navbar">
-
-        <a th:href="@{/index}">Home</a>
-        <a th:href="@{/reservation/rooms/nav}" >Rooms</a>
-        <a th:href="@{account/nav}">Your Account</a>
-        <a th:href="@{/about}">About</a>
-    </div>
-    <br>
-
-
+<div class="navbar">
+    <a th:href="@{/index}">Home</a>
+    <a th:href="@{/reservation/rooms/nav}">Rooms</a>
+    <a th:href="@{account/nav}">Your Account</a>
+    <a th:href="@{/about}">About</a>
+</div>
+<br>
 <div class="container">
     <div class="row">
         <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="post">
@@ -26,25 +20,17 @@
             <label class="info"> So, what do you want to do next?</label><br>
         </form>
     </div>
-
-
 </div>
 <div class="center">
     <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="post">
         <button class="button" type="submit" name="accountView">Your Account</button>
     </form>
-
-
     <form action="#" th:action="@{/reservation/bookRoom}" th:object="${guest}" method="get">
         <button class="button" type="submit" name="roomsView">Choose Room</button>
     </form>
-
 </div>
-
-
 </body>
 <style th:inline="text">
-
 
     /*information about created account---------------------------------------------------*/
     .info {
@@ -72,7 +58,6 @@
         background-color: ghostwhite;
         opacity: 0.85;
         margin: auto;
-
     }
 
     /* Clear floats after the columns */
@@ -88,6 +73,7 @@
         text-align: center;
 
     }
+
     /*information about created account---------------------------------------------------*/
 
     /*button---------------------------------------------------*/
@@ -120,6 +106,7 @@
         align-items: center;
         height: 50vh;
     }
+
     /*button---------------------------------------------------*/
 
     /*body---------------------------------------------------*/
@@ -131,8 +118,8 @@
         font-family: Arial, Helvetica, sans-serif;
         height: 100vh;
         margin: 0;
-
     }
+
     /*body---------------------------------------------------*/
 
     /*navigation bar---------------------------------------------------*/
@@ -186,20 +173,17 @@
             margin-top: 0;
         }
     }
-    /*navigation bar---------------------------------------------------*/
 
+    /*navigation bar---------------------------------------------------*/
 
     @media screen and (max-width: 600px) {
         .button, .center {
             /*margin: 5px;*/
             display: block;
             justify-content: center;
-        margin-left: auto;
+            margin-left: auto;
             margin-right: auto;
         }
     }
-
-
-
 </style>
 </html>

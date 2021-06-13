@@ -1,6 +1,5 @@
 package com.portfolioproject.demo.reservation;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,15 +22,14 @@ public class ReservationController {
 
 
     @Transactional
-    @PostMapping(value = "add" )
+    @PostMapping(value = "add")
     public ResponseEntity<Reservation> addNewReservation(@RequestParam String guestUuid,
                                                          @RequestParam String roomNumber,
                                                          @RequestParam LocalDate start,
                                                          @RequestParam LocalDate end) {
-      Reservation r = reservationService.addReservation(guestUuid, roomNumber, start, end);
-      return ResponseEntity.ok(r);
+        Reservation r = reservationService.addReservation(guestUuid, roomNumber, start, end);
+        return ResponseEntity.ok(r);
     }
-
 
     @GetMapping("all")
     ResponseEntity<List<Reservation>> readAllReservations() {
@@ -61,5 +59,4 @@ public class ReservationController {
             return ResponseEntity.status(400).build();
         }
     }
-
 }

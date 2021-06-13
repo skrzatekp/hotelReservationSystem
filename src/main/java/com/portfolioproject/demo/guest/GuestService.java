@@ -16,11 +16,9 @@ public class GuestService {
         this.guestRepository = guestRepository;
     }
 
-
     public Optional<List<Guest>> readAllGuests() {
         return Optional.of(guestRepository.findAll());
     }
-
 
     public Optional<Guest> readByUuid(String uuid) {
         return guestRepository.findByUuid(uuid);
@@ -39,8 +37,7 @@ public class GuestService {
     }
 
     @Transactional
-   public void deleteGuest(String uuid) {
-        //TODO add feature: you can't delete guest when he has open reservations
+    public void deleteGuest(String uuid) {
         guestRepository.deleteByUuid(uuid);
     }
 
@@ -55,10 +52,6 @@ public class GuestService {
 
         if (guestRepository.findById(guest.getId()).isEmpty()) {
             return Optional.empty();
-            //TODO add some informations that uuid can't be changed
-            //TODO add some informations or exceptions that email or phone number already exist
-            //TODO throw no such Guest
-            // TODO Refactor that if statements
         } else {
             Guest updatedGuest = guestRepository.findById(guest.getId()).get();
 
@@ -90,13 +83,10 @@ public class GuestService {
 
     boolean phoneExists(String phoneNumber) {
         return guestRepository.findByPhone(phoneNumber).isPresent();
-
     }
 
     boolean emailExists(String email) {
         return guestRepository.findByEmail(email).isPresent();
-
-
     }
 
 

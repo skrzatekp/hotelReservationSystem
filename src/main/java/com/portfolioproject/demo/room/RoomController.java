@@ -1,7 +1,6 @@
 package com.portfolioproject.demo.room;
 
 
-import com.portfolioproject.demo.guest.Guest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +21,6 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-
     @GetMapping("all")
     ResponseEntity<List<Room>> readAllRooms() {
         Optional<List<Room>> response = roomService.readAllRooms();
@@ -36,7 +34,6 @@ public class RoomController {
         return ResponseEntity.ok().build();
     }
 
-
     @Transactional
     @PostMapping(value = "add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Room> addNewRoom(@RequestBody Room room) {
@@ -49,13 +46,10 @@ public class RoomController {
         }
     }
 
-
     @Transactional
     @PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Room> actualizeRoomData(@RequestBody Room room) {
         Optional<Room> actualizedRoom = roomService.actualizeRoomData(room);
         return actualizedRoom.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
     }
-
-
 }

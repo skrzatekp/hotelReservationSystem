@@ -14,11 +14,9 @@ public class AppController {
         return "index";
     }
 
-
     @GetMapping(value = "about")
     String aboutPage() {
         return "about";
     }
-
 
 }

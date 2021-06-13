@@ -8,17 +8,15 @@
 <body>
 <div id="page-container">
     <div class="navbar">
-
         <a th:href="@{/index}">Home</a>
-        <a th:href="@{/reservation/rooms/nav}" >Rooms</a>
-        <a  class="active">Your Account</a>
+        <a th:href="@{/reservation/rooms/nav}">Rooms</a>
+        <a class="active">Your Account</a>
         <a th:href="@{/about}">About</a>
     </div>
     <br>
 </div>
 <div class="container">
     <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="get">
-
         <div class="row">
             <div class="col-25">
                 <label>Unique identifier:</label>
@@ -60,89 +58,80 @@
             </span>
         </div>
         <br>
-
     </form>
     <div class="row">
         <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="get">
             <button class="buttonChange" type="submit" name="changeData">Change your data</button>
         </form>
-
         <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="get">
 
             <button class="buttonDelete" type="submit" name="deleteAccount">Delete account</button>
-            <p class="validationError" th:if="${existingAccount == true}">You cannot delete this user.  User exists for you to test the application. Register your own account.</p>
+            <p class="validationError" th:if="${existingAccount == true}">You cannot delete this user. User exists for
+                you to test the application. Register your own account.</p>
         </form>
     </div>
-
 </div>
 <br>
 
 <div class="containerForTable">
-    <form  action="#" th:action="@{/guests/account}" th:object="${reservations}" method="post">
-      <table style=" margin-left: auto; margin-right: auto">
-        <tr th:unless="${reservations.size() == 0}">
-            <th>No</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Room</th>
-            <th>Cost</th>
-            <th>Cancel</th>
-
-        </tr>
-          <span th:if="${reservations.size() != 0}" >
+    <form action="#" th:action="@{/guests/account}" th:object="${reservations}" method="post">
+        <table style=" margin-left: auto; margin-right: auto">
+            <tr th:unless="${reservations.size() == 0}">
+                <th>No</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Room</th>
+                <th>Cost</th>
+                <th>Cancel</th>
+            </tr>
+            <span th:if="${reservations.size() != 0}">
         <tr th:each="res : ${reservations}">
-            <td th:text="${reservations.indexOf(res) + 1}" ></td>
-            <td th:text="${res.start}" ></td>
-            <td th:text="${res.end}" ></td>
-            <td th:text="${res.room.number}" ></td>
+            <td th:text="${reservations.indexOf(res) + 1}"></td>
+            <td th:text="${res.start}"></td>
+            <td th:text="${res.end}"></td>
+            <td th:text="${res.room.number}"></td>
             <td th:text="'$' + ${res.getTotalCost}"></td>
-
-
             </td>
-                <td >
-                <div   th:switch="${res.start.isBefore(todayDate.plusDays(1))}">
+            <td>
+                <div th:switch="${res.start.isBefore(todayDate.plusDays(1))}">
                     <span th:case="true"><label>Can't cancel</label></span>
-                    <span  th:case="false">
-                         <form   th:action="@{/guests/account}"  method="post">
-                            <button name="cancelReservation", th:value="${res.uuid}" class="buttonCancelR">Cancel</button>
+                    <span th:case="false">
+                         <form th:action="@{/guests/account}" method="post">
+                            <button name="cancelReservation" , th:value="${res.uuid}"
+                                    class="buttonCancelR">Cancel</button>
                         </form>
                     </span>
                 </div>
             </td>
-
-
         </tr>
           </span>
-          <span style="text-align: center" th:unless="${reservations.size() != 0}"><label class="label1">Your list of reservations is empty.</label></span>
-
-      </table>
+            <span style="text-align: center" th:unless="${reservations.size() != 0}"><label class="label1">Your list of reservations is empty.</label></span>
+        </table>
     </form>
-
 </div>
-
-
 </body>
-
 <style>
-    .validationError{
+    /*validation--------------------------------------------------*/
+    .validationError {
         color: red;
         font-weight: bold;
         text-align: right;
     }
+
+    /*validation--------------------------------------------------*/
+
+    /*Container for table---------------------------------------------------*/
     .containerForTable {
         border-radius: 5px;
         padding: 20px;
-
         border-style: solid;
         display: inherit;
         justify-content: center;
         align-items: center;
         height: auto;
         width: 60vw;
-
         background-color: ghostwhite;
         opacity: 0.85;
-        /*margin: auto;*/
         margin-left: auto;
         margin-right: auto;
         overflow-wrap: break-word;
@@ -156,6 +145,8 @@
 
         }
     }
+
+    /*Container for table---------------------------------------------------*/
 
     /*<!--Guest data------------------------------------->*/
     label {
@@ -184,37 +175,8 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        /*float: right;*/
         margin: auto;
     }
-
-    .buttonCancel:hover {
-        background-color: royalblue;
-    }
-
-    .buttonChangeR {
-        background-color: forestgreen;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        /*float: right;*/
-        margin: auto;
-    }
-
-    .buttonChangeR:hover {
-        background-color: limegreen;
-    }
-
-
-
-
-
-
-
-
-
 
     .buttonDelete {
         background-color: orange;
@@ -320,14 +282,12 @@
     .container {
         border-radius: 5px;
         padding: 20px;
-
         border-style: solid;
         display: inherit;
         justify-content: center;
         align-items: center;
         height: auto;
         width: 60vw;
-
         background-color: ghostwhite;
         opacity: 0.85;
         margin: auto;
@@ -340,8 +300,6 @@
         margin-top: 6px;
         text-align: right;
         overflow-wrap: break-word;
-
-
     }
 
     .col-75 {
@@ -350,8 +308,6 @@
         margin-top: 6px;
         text-align: left;
         overflow-wrap: break-word;
-
-        /*overflow: auto;*/
     }
 
     /* Clear floats after the columns */
@@ -362,6 +318,7 @@
     }
 
     /*Container for input form---------------------------------------------------*/
+
     /*table---------------------------------------------------*/
     table {
         font-family: arial, sans-serif;
@@ -381,8 +338,5 @@
     }
 
     /*table---------------------------------------------------*/
-
 </style>
-
-
 </html>

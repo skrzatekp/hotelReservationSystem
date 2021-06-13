@@ -1,7 +1,6 @@
 package com.portfolioproject.demo.guest;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.portfolioproject.demo.reservation.Reservation;
 
 import javax.persistence.*;
@@ -32,11 +31,11 @@ public class Guest {
     private String secondName;
 
     @Email(regexp = ".+@.+\\..+",
-            message = "Input valid email address like:  example@gmail.com")
+            message = "Input valid email address like: example@gmail.com")
     private String email;
 
     @Pattern(regexp = "(\\d{9})|(\\d{3} \\d{3} \\d{3})|(\\d{3}-\\d{3}-\\d{3})",
-            message = "Input valid phone number lke: 123456789 or 123 456 789 or 123-456-789")
+            message = "Input valid phone number like: 123456789 or 123 456 789 or 123-456-789")
     private String phone;
 
     @OneToMany
@@ -78,7 +77,7 @@ public class Guest {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone.trim().replaceAll("-","").replaceAll(" ", "");
+        this.phone = phone.trim().replaceAll("-", "").replaceAll(" ", "");
     }
 
     public void setFirstName(String firstName) {
@@ -94,26 +93,25 @@ public class Guest {
     }
 
     public void setUuid() {
-        if(this.uuid == null || this.uuid.isEmpty()){
-        UUID uuid = UUID.randomUUID();
-        this.uuid = uuid.toString();
+        if (this.uuid == null || this.uuid.isEmpty()) {
+            UUID uuid = UUID.randomUUID();
+            this.uuid = uuid.toString();
         }
     }
 
     public void setReservations() {
-        if(this.reservations == null){
+        if (this.reservations == null) {
             this.reservations = new HashSet<>();
         }
     }
 
     public void setReservations2(Set res) {
-        if(this.reservations == null){
+        if (this.reservations == null) {
             this.reservations = new HashSet<>();
-        } else{
+        } else {
             this.reservations = res;
         }
     }
-
 
     @Override
     public boolean equals(Object o) {
