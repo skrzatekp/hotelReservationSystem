@@ -5,6 +5,18 @@ plugins {
 	id("application")
 }
 
+jar {
+	manifest {
+		attributes 'org.portfolioproject.demo.DemoApplication'
+	}
+}
+
+application {
+	mainClass = 'org.portfolioproject.demo.DemoApplication'
+}
+
+
+
 group = 'com.portfolioproject'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -33,8 +45,5 @@ test {
 
 
 
-application {
-	mainClass = 'org.portfolioproject.demo.DemoApplication'
-}
 
 
