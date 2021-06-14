@@ -26,7 +26,7 @@
     <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="post">
         <button class="button" type="submit" name="accountView">Your Account</button>
     </form>
-    <form action="#" th:action="@{/reservation/bookRoom}" th:object="${guest}" method="get">
+    <form action="#" th:action="@{/reservation/rooms/nav}" th:object="${guest}" method="get">
         <button class="button" type="submit" name="roomsView">Choose Room</button>
     </form>
 </div>

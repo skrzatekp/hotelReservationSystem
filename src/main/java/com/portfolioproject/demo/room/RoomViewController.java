@@ -13,16 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class RoomViewController {
 
     private RoomService roomService;
+    private ReservationViewController reservationViewController;
 
     @Autowired
-    public RoomViewController(RoomService roomService) {
+    public RoomViewController(RoomService roomService, ReservationViewController reservationViewController, ReservationViewController reservationViewController1) {
         this.roomService = roomService;
+        this.reservationViewController = reservationViewController1;
     }
 
     @PostMapping("roomView")
     public String showRoom(@RequestParam String number, Model model) {
         Room room = roomService.readByNumber(number).get();
-        model.addAttribute("reservation", ReservationViewController.getCurrentReservation());
+        model.addAttribute("reservation", reservationViewController.getCurrentReservation());
         model.addAttribute("choosenRoom", room);
         return "roomView";
     }

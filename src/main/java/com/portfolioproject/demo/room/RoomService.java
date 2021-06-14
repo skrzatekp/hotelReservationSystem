@@ -59,7 +59,7 @@ public class RoomService {
     @Transactional
     Optional<Room> actualizeRoomData(Room room) {
 
-        if (roomRepository.findById(room.getId()).isEmpty()) {
+        if (!roomRepository.findById(room.getId()).isPresent()) {
             return Optional.empty();
         } else {
             Room updatedRoom = roomRepository.findById(room.getId()).get();

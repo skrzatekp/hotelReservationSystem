@@ -50,7 +50,7 @@ public class GuestService {
     @Transactional
     Optional<Guest> actualizeGuestData(Guest guest) {
 
-        if (guestRepository.findById(guest.getId()).isEmpty()) {
+        if (!guestRepository.findById(guest.getId()).isPresent()) {
             return Optional.empty();
         } else {
             Guest updatedGuest = guestRepository.findById(guest.getId()).get();

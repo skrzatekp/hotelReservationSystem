@@ -5,6 +5,16 @@ plugins {
 	id("application")
 }
 
+tasks.register('uberJar', Zip) {
+	archiveClassifier = 'uber'
+
+	from sourceSets.main.output
+
+	dependsOn configurations.runtimeClasspath
+	from {
+		configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+	}
+}
 
 application {
 	mainClass = 'com.portfolioproject.demo.DemoApplication'
@@ -19,11 +29,9 @@ jar {
 	}
 }
 
-
-
 group = 'com.portfolioproject'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '8'
 
 repositories {
 	mavenCentral()
@@ -40,7 +48,6 @@ dependencies {
 	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time', version: '3.0.4.RELEASE'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
 }
 
 test {

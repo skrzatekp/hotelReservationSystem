@@ -21,7 +21,7 @@ public class ReservationViewController {
     private GuestService guestService;
     private Guest currentGuest;
     private RoomService roomService;
-    private static Reservation currentReservation;
+    private Reservation currentReservation;
     private Room currentRoom;
     private ReservationService reservationService;
 
@@ -32,7 +32,7 @@ public class ReservationViewController {
         this.reservationService = reservationService;
     }
 
-    public static Reservation getCurrentReservation() {
+    public Reservation getCurrentReservation() {
         return currentReservation;
     }
 
@@ -40,7 +40,6 @@ public class ReservationViewController {
     String bookRoom(Model model) {
         currentGuest = GuestViewController.getCurrentGuest();
         model.addAttribute("currentGuest", currentGuest);
-        currentReservation = new Reservation();
         model.addAttribute("reservation", currentReservation);
         return "bookRoom";
     }
@@ -97,6 +96,7 @@ public class ReservationViewController {
 
         currentReservation = reservation;
 
+
         model.addAttribute("reservation", currentReservation);
         model.addAttribute("showingRooms", true);
         if ("true".equals(freeRooms)) {
@@ -124,7 +124,7 @@ public class ReservationViewController {
 
     @GetMapping(value = "payment")
     String payment(Model model) {
-        if (guestService.readByUuid(currentGuest.getUuid()).isEmpty()) {
+        if (!guestService.readByUuid(currentGuest.getUuid()).isPresent()) {
             model.addAttribute("guestNotExist", true);
             model.addAttribute("guest", new Guest());
             return "addGuest";

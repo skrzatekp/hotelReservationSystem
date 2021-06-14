@@ -65,8 +65,12 @@ public class ReservationService {
         List<Reservation> guestReservations = new ArrayList<>();
 
         for (Reservation r : all) {
-            if (guestUuid.equals(r.getGuest().getUuid())) {
-                guestReservations.add(r);
+            if (r.getGuest() == null) {
+                continue;
+            } else {
+                if (r.getGuest().getUuid().equals(guestUuid)) {
+                    guestReservations.add(r);
+                }
             }
         }
         return guestReservations;

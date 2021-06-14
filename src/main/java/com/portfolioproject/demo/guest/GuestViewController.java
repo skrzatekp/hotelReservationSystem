@@ -35,9 +35,13 @@ public class GuestViewController {
 
     @GetMapping("register")
     String registerGuest(Model model) {
-        Guest guest = new Guest();
-        model.addAttribute("guest", guest);
-        currentGuest = guest;
+        if (currentGuest == null || currentGuest.getPhone() == null) {
+            Guest guest = new Guest();
+            model.addAttribute("guest", guest);
+            currentGuest = guest;
+        } else {
+            model.addAttribute("guest", currentGuest);
+        }
         return "addGuest";
     }
 
