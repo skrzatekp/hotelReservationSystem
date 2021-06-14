@@ -7,14 +7,14 @@ plugins {
 
 
 application {
-	mainClass = 'org.portfolioproject.demo.DemoApplication'
+	mainClass = 'com.portfolioproject.demo.DemoApplication'
 }
 
 jar {
 	manifest {
 		attributes(
 
-				'Main-Class': 'org.portfolioproject.demo.DemoApplication'
+				'Main-Class': 'com.portfolioproject.demo.DemoApplication'
 		)
 	}
 }
