@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.5.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id("application")
 }
 
 group = 'com.portfolioproject'
@@ -29,16 +30,13 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
-
+java {
+	// Defines the main class for the application
+	mainClassName = "com.portfolioproject.demo.DemoApplication"
+}
 
 jar {
-	doFirst {
-		manifest {
-			if (!configurations.compile.isEmpty()) {
-				attributes(
-						'Class-Path': configurations.compile.collect{it.toURI().toString()}.join(' '),
-						'Main-Class': 'com.portfolioproject.demo.DemoApplication')
-			}
-		}
+	manifest {
+		attributes("Main-Class": "com.portfolioproject.demo.DemoApplication")   // for Groovy DSL
 	}
 }
