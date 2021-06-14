@@ -10,6 +10,15 @@ application {
 	mainClass = 'org.portfolioproject.demo.DemoApplication'
 }
 
+jar {
+	manifest {
+		attributes(
+
+				'Main-Class': 'org.portfolioproject.demo.DemoApplication'
+		)
+	}
+}
+
 
 
 group = 'com.portfolioproject'
