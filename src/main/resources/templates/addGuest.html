@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="#">
 </head>
 
-<body>
+<body onload="reset();">
 
 <div id="page-container">
     <div class="navbar">
@@ -91,6 +91,16 @@
         document.getElementById("lname").value = lastNames[lnumber];
         document.getElementById("phone").value = (parseInt(Math.floor(Math.random() * 100000000) + 100000000 - 1)).toString();
         document.getElementById("email").value = document.getElementById("fname").value + document.getElementById("lname").value + (parseInt(Math.floor((Math.random() * 100000) + 1))).toString() + "@example.com";
+    }
+</script>
+
+
+<script>
+    function reset() {
+        document.getElementById("fname").value = "";
+        document.getElementById("lname").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("email").value = "";
     }
 </script>
 
@@ -221,7 +231,7 @@
     /*Container for input form---------------------------------------------------*/
     .container {
         border-radius: 5px;
-        padding: 20px;
+        padding: 8px;
 
         border-style: solid;
         display: inherit;
@@ -251,6 +261,14 @@
         content: "";
         display: table;
         clear: both;
+    }
+
+    @media screen and (max-width: 800px) {
+        .container {
+            width: 95%;
+            margin-top: 0;
+
+        }
     }
 
     /*Container for input form---------------------------------------------------*/

@@ -16,7 +16,7 @@
     </div>
     <br>
 </div>
-<div class="container">
+<div class="containerForTable">
     <form action="#" th:action="@{/guests/account}" th:object="${guest}" method="post">
         <p class="validationError" th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
         <p class="validationError" th:if="${emailExists == true}">Account for given email already exists. </p>
@@ -93,7 +93,7 @@
     /*<!--Input data------------------------------------->*/
     input[type=text], select, textarea {
         width: 100%;
-        padding: 12px;
+        padding: 7px;
         border: 1px solid #ccc;
         border-radius: 4px;
         resize: vertical;
@@ -109,6 +109,7 @@
         padding: 8px 8px 8px 0;
         display: inline-block;
         width: 100%;
+        font-size: medium;
     }
 
     .label1 {
@@ -213,32 +214,35 @@
     /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead
     of next to each other */
     @media screen and (max-width: 600px) {
-        .col-25, .col-75, input[type=submit], .buttonDelete, .buttonChange {
+        input[type=submit], .buttonDelete, .buttonChange {
             width: 100%;
             margin-top: 0;
         }
     }
+    @media screen and (max-width: 600px) {
+        .col-25{
+            width: 25% !important;
+               }
+    }
+    @media screen and (max-width: 600px) {
+        .col-75 {
+            width: 75% !important;
+            margin-top: 0;
+         }
+    }
+    @media screen and (max-width: 600px) {
+        .row {
+            width: inherit;
+        }
+    }
+
+
+
 
     /*navigation bar---------------------------------------------------*/
 
 
     /*Container for input form---------------------------------------------------*/
-    .container {
-        border-radius: 5px;
-        padding: 20px;
-
-        border-style: solid;
-        display: inherit;
-        justify-content: center;
-        align-items: center;
-        height: auto;
-        width: 60vw;
-
-        background-color: ghostwhite;
-        opacity: 0.85;
-        margin: auto;
-        overflow-wrap: break-word;
-    }
 
     .col-25 {
         float: left;
@@ -246,8 +250,6 @@
         margin-top: 6px;
         text-align: right;
         overflow-wrap: break-word;
-
-
     }
 
     .col-75 {
@@ -256,8 +258,6 @@
         margin-top: 6px;
         text-align: left;
         overflow-wrap: break-word;
-
-        /*overflow: auto;*/
     }
 
     /* Clear floats after the columns */
@@ -268,5 +268,32 @@
     }
 
     /*Container for input form---------------------------------------------------*/
+
+    /*Container for table---------------------------------------------------*/
+    .containerForTable {
+        border-radius: 5px;
+        padding: 8px;
+        border-style: solid;
+        display: inherit;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 60vw;
+        background-color: ghostwhite;
+        opacity: 0.85;
+        margin-left: auto;
+        margin-right: auto;
+        overflow-wrap: break-word;
+        margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 800px) {
+        .containerForTable {
+            width: 95%;
+            margin-top: 0;
+
+        }
+    }
+    /*Container for table---------------------------------------------------*/
 </style>
 </html>

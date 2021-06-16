@@ -225,47 +225,6 @@
 
     /*<!--Input data------------------------------------->*/
 
-    /*Container for input form---------------------------------------------------*/
-    .container {
-        border-radius: 5px;
-        padding: 20px;
-        border-style: solid;
-        display: inherit;
-        justify-content: center;
-        align-items: center;
-        height: auto;
-        width: 60vw;
-        background-color: ghostwhite;
-        opacity: 0.85;
-        margin: auto;
-        overflow-wrap: break-word;
-    }
-
-
-    .col-25 {
-        float: left;
-        width: 48%;
-        margin-top: 6px;
-        text-align: right;
-        overflow-wrap: break-word;
-    }
-
-    .col-75 {
-        float: right;
-        width: 48%;
-        margin-top: 6px;
-        text-align: left;
-        overflow-wrap: break-word;
-    }
-
-    /* Clear floats after the columns */
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    /*Container for input form---------------------------------------------------*/
 
     /*body---------------------------------------------------*/
     body {
@@ -342,12 +301,7 @@
     /*navigation bar---------------------------------------------------*/
 
     /*<!--Room data------------------------------------->*/
-    .label2 {
-        padding: 8px 8px 8px 0;
-        display: inline-block;
-        width: 100%;
-        color: #0f4d94;
-    }
+
 
     label {
         display: inline-block;
@@ -516,6 +470,13 @@
     @media screen and (max-width: 600px) {
         .col-25, .col-75 {
             width: 48%;
+            margin-top: 0;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .container {
+            width: 95%;
             margin-top: 0;
         }
     }
