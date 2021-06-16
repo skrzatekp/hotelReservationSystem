@@ -2,19 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
+    <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="#">
-
-
 </head>
 
 <body>
 <div class="navbar">
-    <a class="active">Home</a>
-    <a th:href="@{/reservation/rooms/nav}">Rooms</a>
-    <a th:href="@{/guests/account/nav}">Your Account</a>
-    <a th:href="@{/about}">About</a>
+    <a class="active">Register Account</a>
+    <a th:href="@{/about2}">About</a>
 </div>
 <br>
 <div class="deletionInformation" th:if="${message != null}">Your account was deleted.</div>
@@ -108,7 +104,7 @@
         color: white;
         text-decoration: none;
         font-size: 17px;
-        width: 25%; /* Four links of equal widths */
+        width: 50%; /* Two links of equal widths */
         text-align: center;
     }
 

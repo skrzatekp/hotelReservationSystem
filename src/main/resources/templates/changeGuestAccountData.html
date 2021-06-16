@@ -9,7 +9,7 @@
 <body>
 <div id="page-container">
     <div class="navbar">
-        <a th:href="@{/index}">Home</a>
+        <a th:href="@{/home}">Home</a>
         <a th:href="@{/reservation/rooms/nav}">Rooms</a>
         <a class="active">Your Account</a>
         <a th:href="@{/about}">About</a>
@@ -219,24 +219,25 @@
             margin-top: 0;
         }
     }
+
     @media screen and (max-width: 600px) {
-        .col-25{
+        .col-25 {
             width: 25% !important;
-               }
+        }
     }
+
     @media screen and (max-width: 600px) {
         .col-75 {
             width: 75% !important;
             margin-top: 0;
-         }
+        }
     }
+
     @media screen and (max-width: 600px) {
         .row {
             width: inherit;
         }
     }
-
-
 
 
     /*navigation bar---------------------------------------------------*/
@@ -294,6 +295,7 @@
 
         }
     }
+
     /*Container for table---------------------------------------------------*/
 </style>
 </html>

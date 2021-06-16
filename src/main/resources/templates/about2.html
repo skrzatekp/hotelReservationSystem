@@ -10,12 +10,11 @@
 <body>
 <div id="page-container">
     <div class="navbar">
-        <a th:href="@{/home}">Home</a>
-        <a th:href="@{/reservation/rooms/nav}">Rooms</a>
-        <a th:href="@{guests/account/nav}">Your Account</a>
+        <a th:href="@{/index}">Register Account</a>
         <a class="active">About</a>
     </div>
 </div>
+<br>
 <div class="container">
     <div class="row">
         <p class="info"> This is a demo application for a hotel reservation system.</p><br>
@@ -53,9 +52,7 @@
         </a>
     </div>
 </div>
-</div>
 </body>
-
 
 <style th:inline="text">
     /*information ---------------------------------------------------*/
@@ -151,15 +148,7 @@
         color: white;
     }
 
-    .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50vh;
-    }
-
     /*Button---------------------------------------------------*/
-
 
     /*Navigation bar---------------------------------------------------*/
     * {
@@ -178,7 +167,7 @@
         color: white;
         text-decoration: none;
         font-size: 17px;
-        width: 25%; /* Four links of equal widths */
+        width: 50%; /* two links of equal widths */
         text-align: center;
     }
 
@@ -206,7 +195,7 @@
             margin-top: 0;
         }
     }
-
     /*Navigation bar---------------------------------------------------*/
+
 </style>
 </html>

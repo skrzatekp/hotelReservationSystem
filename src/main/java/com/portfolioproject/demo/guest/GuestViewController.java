@@ -33,6 +33,10 @@ public class GuestViewController {
         return currentGuest;
     }
 
+    public static void resetCurrentGuest() {
+        currentGuest = null;
+    }
+
     @GetMapping("register")
     String registerGuest(Model model) {
         if (currentGuest == null || currentGuest.getPhone() == null) {
@@ -75,6 +79,11 @@ public class GuestViewController {
         if (bindingResult.hasErrors()) {
             return "addGuest";
         }
+        if (guestService.readByUuid(currentGuest.getUuid()).isPresent()) {
+            model.addAttribute("guestAlreadyCreated", true);
+            return "addGuest";
+        }
+
         model.addAttribute("guest", guest);
         currentGuest = guest;
         guestService.addGuest(guest);

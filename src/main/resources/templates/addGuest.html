@@ -11,7 +11,7 @@
 
 <div id="page-container">
     <div class="navbar">
-        <a th:href="@{/index}">Home</a>
+        <a th:href="@{/home}">Home</a>
         <a th:href="@{/reservation/rooms/nav}">Rooms</a>
         <a class="active">Your Account</a>
         <a th:href="@{/about}">About</a>
@@ -23,6 +23,7 @@
     <form action="#" th:action="@{/guests/register}" th:object="${guest}" method="post">
         <p class="validationError" th:if="${guestNotExist == true}">You deleted your account. Can't make reservation for
             deleted account.</p>
+        <p class="validationError" th:if="${guestAlreadyCreated == true}">Account was already created. </p>
         <p class="validationError" th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
         <p class="validationError" th:if="${alreadyDeleted == true}">Account was already deleted</p>
         <div class="row">

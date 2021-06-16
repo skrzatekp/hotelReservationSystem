@@ -1,63 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>About</title>
+    <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="#">
 </head>
-
 <body>
-<div id="page-container">
-    <div class="navbar">
-        <a th:href="@{/home}">Home</a>
-        <a th:href="@{/reservation/rooms/nav}">Rooms</a>
-        <a th:href="@{guests/account/nav}">Your Account</a>
-        <a class="active">About</a>
-    </div>
+<div class="navbar">
+    <a class="active">Home</a>
+    <a th:href="@{/reservation/rooms/nav}">Rooms</a>
+    <a th:href="@{/guests/account/nav}">Your Account</a>
+    <a th:href="@{/about}">About</a>
 </div>
+<br>
+
 <div class="container">
+    <p class="validationError" th:if="${reservationAlreadySaved == true}">Reservation was already saved. Don't use
+        "back" button or arrows.</p>
     <div class="row">
-        <p class="info"> This is a demo application for a hotel reservation system.</p><br>
+        <p class="info"> This is a demo application for a hotel reservation system.
+            Read more on "About" page.</p><br>
     </div>
-    <div class="row2">
-        <p class="info"> Used technologies and tools:</p>
-        <ol class="info">
-            <li>Core</li>
-            <ul>
-                <li>Java</li>
-                <li>Spring Boot</li>
-            </ul>
-            <li>Data</li>
-            <ul>
-                <li>H2 database</li>
-                <li>Flyway</li>
-            </ul>
-            <li>View</li>
-            <ul>
-                <li>Thymeleaf</li>
-                <li>HTML</li>
-                <li>CSS</li>
-            </ul>
-            <li>Test</li>
-            <ul>
-                <li>JUnit 5</li>
-                <li>Mockito</li>
-                <li>Postman</li>
-            </ul>
-        </ol>
-        <br>
-        <span class="info"> Author:</span>
-        <a href="https://github.com/skrzatekp">
-            <button class="button" type="submit" name="accountView">GitHub</button>
-        </a>
-    </div>
+    <br>
+    <br>
+    <br>
+    <span class="info"> Author:</span>
+    <a href="https://github.com/skrzatekp">
+        <button class="button" type="submit" name="accountView">GitHub</button>
+    </a>
 </div>
 </div>
 </body>
-
-
 <style th:inline="text">
+    /*validation--------------------------------------------------*/
+    .validationError {
+        color: red;
+        font-weight: bold;
+    }
+
+    /*validation--------------------------------------------------*/
     /*information ---------------------------------------------------*/
     .info {
         font-family: Arial, Helvetica, sans-serif;
@@ -151,13 +133,6 @@
         color: white;
     }
 
-    .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50vh;
-    }
-
     /*Button---------------------------------------------------*/
 
 
@@ -178,7 +153,7 @@
         color: white;
         text-decoration: none;
         font-size: 17px;
-        width: 25%; /* Four links of equal widths */
+        width: 25%; /* four links of equal widths */
         text-align: center;
     }
 
@@ -208,5 +183,7 @@
     }
 
     /*Navigation bar---------------------------------------------------*/
+
+
 </style>
 </html>

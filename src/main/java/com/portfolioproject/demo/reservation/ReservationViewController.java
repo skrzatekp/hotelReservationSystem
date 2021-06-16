@@ -130,6 +130,16 @@ public class ReservationViewController {
             return "addGuest";
         }
 
+        for (Reservation reservation : reservationService.getAllGuestReservationsFor(currentGuest.getUuid())) {
+            if (currentReservation.getStart().equals(reservation.getStart()) &&
+                    currentReservation.getEnd().equals(reservation.getEnd()) &&
+                    currentRoom.getNumber().equals(reservation.getRoom().getNumber())
+            ) {
+                model.addAttribute("reservationAlreadySaved", true);
+                return "home";
+            }
+        }
+
         reservationService.addReservation(currentGuest.getUuid(), currentRoom.getNumber(), currentReservation.getStart(), currentReservation.getEnd());
 
         return "payment";
